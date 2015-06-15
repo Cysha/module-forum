@@ -1,0 +1,23 @@
+{
+    "name": "Forum",
+    "alias": "forum",
+    "description": "Forum Module for Phoenix CMS",
+    "authors": [
+        { "name": "xLink (Dan Aldridge)", "email": "xLink@cybershade.org" }
+    ],
+    "keywords": [
+    ],
+    "version": "v1.0.0",
+    "active": 1,
+    "order": 10,
+    "providers": [
+        "Cms\\Modules\\Forum\\Providers\\ForumModuleServiceProvider",
+        "Cms\\Modules\\Forum\\Providers\\ForumEventsProvider",
+        "Cms\\Modules\\Forum\\Providers\\ForumRoutingProvider"
+    ],
+    "aliases": {
+    },
+    "files": [
+        "helpers.php"
+    ]
+}

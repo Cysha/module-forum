@@ -1,0 +1,154 @@
+@import '../../../../../../app/assets/vendor/bootstrap/less/variables.less';
+@import '../../../../../../app/assets/vendor/bootstrap/less/mixins.less';
+@import '../../../../../../app/assets/vendor/bootstrap/less/utilities.less';
+
+.forum-partials {
+
+    &.thread-row {
+        margin-bottom: 3px;
+
+
+        > .avatar {
+            .make-md-column(2);
+        }
+
+        > .info {
+            .make-md-column(8);
+        }
+
+        > .replies {
+            .make-md-column(2);
+        }
+
+        a > .label {
+            padding: 0.3em 0.6em 0.3em;
+            font-size: 85%;
+        }
+
+        a:hover > .label, a:active > .label, a.active > .label {
+            color: white;
+            text-decoration: none;
+        }
+    }
+
+    /* http://bootsnipp.com/snippets/featured/styled-post */
+    &.post-row {
+        position: relative;
+        border-radius: 0px;
+        border: 1px solid rgb(216, 216, 216);
+
+        > .dropdown {
+            position: absolute;
+            top: 5px;
+            right: 15px;
+
+            > span > span {
+                font-size: 10px;
+            }
+
+            > .dropdown-menu {
+                left: initial;
+                right: 0px;
+                border-radius: 2px;
+            }
+        }
+        > .panel-tags {
+            position: absolute;
+            top: 35px;
+            right: -3px;
+
+            > ul {
+                list-style: none;
+                padding: 0px;
+                margin: 0px;
+
+                &:hover {
+                    box-shadow: 0px 0px 3px rgb(0, 0, 0);
+                    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+
+                    > li {
+                        background-color: rgb(255, 255, 255);
+                    }
+                }
+
+
+                > li {
+                    display: block;
+                    right: 0px;
+                    width: 0px;
+                    padding: 5px 0px 5px 0px;
+                    background-color: rgb(245, 245, 245);
+                    font-size: 12px;
+                    overflow: hidden;
+
+                    &:hover {
+                        background-color: rgb(66, 127, 237);
+                        color: rgb(255, 255, 255);
+                    }
+
+                    &::after {
+                        content:"";
+                        position: absolute;
+                        top: 0px;
+                        right: 0px;
+                        height: 100%;
+                        border-right: 3px solid rgb(66, 127, 237);
+                    }
+                }
+            }
+
+            > ul:hover > li,
+            > ul > li:first-child {
+                padding: 5px 15px 5px 10px;
+                width: auto;
+                cursor: pointer;
+                margin-left: auto;
+            }
+        }
+
+        > .panel-heading,
+        > .panel-footer {
+            background-color: rgb(255, 255, 255);
+            border-width: 0px;
+        }
+        > .panel-heading {
+            margin-top: 20px;
+            padding-bottom: 5px;
+
+            > img {
+                margin-right: 15px;
+                height: 40px;
+                width: 40px;
+            }
+
+            > h3 {
+                margin: 0px;
+                font-size: 14px;
+                font-weight: 700;
+            }
+
+            > h5 {
+                color: rgb(153, 153, 153);
+                font-size: 12px;
+                font-weight: 400;
+            }
+        }
+        > .panel-body {
+            padding-top: 5px;
+            font-size: 13px;
+
+            > .panel-image {
+                display: block;
+                text-align: center;
+                background-color: rgb(245, 245, 245);
+                border: 1px solid rgb(217, 217, 217);
+            }
+            > .panel-image > img {
+                max-width: 100%;
+            }
+        }
+
+    }
+}
+
+

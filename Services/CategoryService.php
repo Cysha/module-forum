@@ -1,0 +1,49 @@
+<?php namespace Cms\Modules\Forum\Services;
+
+use Cms\Modules\Forum\Repositories\Category\RepositoryInterface as CategoryRepo;
+use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
+
+class CategoryService
+{
+    public function __construct(CategoryRepo $category)
+    {
+        $this->category = $category;
+    }
+
+    public function getById($category_id)
+    {
+        $models = $this->category
+            ->with(['threadCount'])
+            ->getById($category_id);
+
+        return $this->category->transformModels($models);
+    }
+
+    public function all()
+    {
+        return $this->category->transformModels(
+            $this->getAllCategories()
+        );
+    }
+
+    public function getCreateData()
+    {
+        $data = [];
+
+        $data['categories'] = $this->getAllCategories();
+
+        return $data;
+    }
+
+    protected function getAllCategories()
+    {
+        $models = $this->category
+            ->with(['threadCount'])
+            ->orderBy('order', 'asc')
+            ->get();
+
+        return $models->filter(function ($model) {
+            return Lock::can('read', 'forum_frontend', $model->id);
+        });
+    }
+}

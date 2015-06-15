@@ -1,0 +1,268 @@
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+.invisible {
+  visibility: hidden;
+}
+.text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+.affix {
+  position: fixed;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.forum-partials {
+  /* http://bootsnipp.com/snippets/featured/styled-post */
+}
+.forum-partials.thread-row {
+  margin-bottom: 3px;
+}
+.forum-partials.thread-row > .avatar {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .forum-partials.thread-row > .avatar {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+.forum-partials.thread-row > .info {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .forum-partials.thread-row > .info {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+.forum-partials.thread-row > .replies {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .forum-partials.thread-row > .replies {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+.forum-partials.thread-row a > .label {
+  padding: 0.3em 0.6em 0.3em;
+  font-size: 85%;
+}
+.forum-partials.thread-row a:hover > .label,
+.forum-partials.thread-row a:active > .label,
+.forum-partials.thread-row a.active > .label {
+  color: white;
+  text-decoration: none;
+}
+.forum-partials.post-row {
+  position: relative;
+  border-radius: 0px;
+  border: 1px solid #d8d8d8;
+  /*> .panel-comment > img {
+            float: left;
+        }*/
+}
+.forum-partials.post-row > .dropdown {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+}
+.forum-partials.post-row > .dropdown > span > span {
+  font-size: 10px;
+}
+.forum-partials.post-row > .dropdown > .dropdown-menu {
+  left: initial;
+  right: 0px;
+  border-radius: 2px;
+}
+.forum-partials.post-row > .panel-tags {
+  position: absolute;
+  top: 35px;
+  right: -3px;
+}
+.forum-partials.post-row > .panel-tags > ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+.forum-partials.post-row > .panel-tags > ul:hover {
+  box-shadow: 0px 0px 3px #000000;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+.forum-partials.post-row > .panel-tags > ul:hover > li {
+  background-color: #ffffff;
+}
+.forum-partials.post-row > .panel-tags > ul > li {
+  display: block;
+  right: 0px;
+  width: 0px;
+  padding: 5px 0px 5px 0px;
+  background-color: #f5f5f5;
+  font-size: 12px;
+  overflow: hidden;
+}
+.forum-partials.post-row > .panel-tags > ul > li:hover {
+  background-color: #427fed;
+  color: #ffffff;
+}
+.forum-partials.post-row > .panel-tags > ul > li::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  border-right: 3px solid #427fed;
+}
+.forum-partials.post-row > .panel-tags > ul:hover > li,
+.forum-partials.post-row > .panel-tags > ul > li:first-child {
+  padding: 5px 15px 5px 10px;
+  width: auto;
+  cursor: pointer;
+  margin-left: auto;
+}
+.forum-partials.post-row > .panel-heading,
+.forum-partials.post-row > .panel-footer {
+  background-color: #ffffff;
+  border-width: 0px;
+}
+.forum-partials.post-row > .panel-heading {
+  margin-top: 20px;
+  padding-bottom: 5px;
+}
+.forum-partials.post-row > .panel-heading > img {
+  margin-right: 15px;
+  height: 40px;
+  width: 40px;
+}
+.forum-partials.post-row > .panel-heading > h3 {
+  margin: 0px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.forum-partials.post-row > .panel-heading > h5 {
+  color: #999999;
+  font-size: 12px;
+  font-weight: 400;
+}
+.forum-partials.post-row > .panel-body {
+  padding-top: 5px;
+  font-size: 13px;
+}
+.forum-partials.post-row > .panel-body > .panel-image {
+  display: block;
+  text-align: center;
+  background-color: #f5f5f5;
+  border: 1px solid #d9d9d9;
+}
+.forum-partials.post-row > .panel-body > .panel-image > img {
+  max-width: 100%;
+}
+.forum-partials.post-row > .panel-footer {
+  font-size: 14px;
+  font-weight: 700;
+  min-height: 54px;
+}
+.forum-partials.post-row > .panel-footer > .btn {
+  float: left;
+  margin-right: 8px;
+}
+.forum-partials.post-row > .panel-footer > .input-placeholder {
+  display: block;
+  margin-left: 98px;
+  color: #999999;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 8px 6px 7px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 0px 0px;
+}
+.forum-partials.post-row .panel-google-plus.panel-show-comment > .panel-footer > .input-placeholder {
+  display: none;
+}
+.forum-partials.post-row > .panel-comment {
+  display: none;
+  padding: 10px 20px 15px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #f5f5f5;
+}
+.forum-partials.post-row .panel-google-plus.panel-show-comment > .panel-comment {
+  display: block;
+}
+.forum-partials.post-row > .panel-comment > .panel-textarea {
+  float: right;
+  width: calc(44%);
+}
+.forum-partials.post-row > .panel-comment > .panel-textarea > textarea {
+  display: block;
+  /*margin-left: 60px;
+            width: calc(100% - 56px);*/
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #d9d9d9;
+  box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 0px 0px;
+  resize: vertical;
+}
+.forum-partials.post-row > .panel-comment > .panel-textarea > .btn {
+  margin-top: 10px;
+  margin-right: 8px;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  .forum-partials.post-row > .panel-comment > .panel-textarea > .btn {
+    width: auto;
+  }
+}
+.forum-partials.post-row .btn {
+  border-radius: 3px;
+}
+.forum-partials.post-row .btn-default {
+  border: 1px solid #d9d9d9;
+  box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 0px 0px;
+}
+.forum-partials.post-row .btn-default:hover,
+.forum-partials.post-row .btn-default:focus,
+.forum-partials.post-row .btn-default:active {
+  background-color: #ffffff;
+  border-color: #000000;
+}
