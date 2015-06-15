@@ -1,12 +1,12 @@
 <div class="page-header">
-    <h2>Create Thread</h2>
+    <h2>Create Thread &raquo; <small>{{ array_get($category, 'name') }}</small></h2>
 </div>
 
 <div class="col-md-12">
 
 {!! Former::open() !!}
     {!! Former::text('name')->label('Title') !!}
-    {!! Form::DBSelect('category_id', $categories, ['id' => 'name'])->label('Category') !!}
+    {{-- {!! Form::DBSelect('category_id', $categories, ['id' => 'name'])->label('Category') !!} --}}
 
     <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
         <label class="col-sm-3 control-label">Body</label>

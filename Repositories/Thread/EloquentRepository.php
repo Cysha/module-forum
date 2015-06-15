@@ -17,13 +17,14 @@ class EloquentRepository extends BaseEloquentRepository implements RepositoryInt
         return $this->model
             ->with(['posts', 'latestPost.author', 'author'])
             ->where('category_id', $category_id)
+            ->orderBy('updated_at', 'desc')
             ->get();
     }
 
     public function getById($thread_id)
     {
         return $this->model
-            ->with(['posts', 'posts.author'])
+            ->with(['posts', 'latestPost.author', 'posts.author'])
             ->findOrFail($thread_id);
     }
 }

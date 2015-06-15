@@ -64,13 +64,14 @@ class CategoryController extends BaseController
 
         Former::populateField('category_id', $category->id);
 
-        return $this->setView('frontend.pages.thread.create', $categoryService->getCreateData());
+        return $this->setView('frontend.pages.thread.create', $categoryService->getCreateData($category));
     }
 
     public function store(Category $category, Request $input, ThreadService $threadService, ThreadCreateRequest $request)
     {
         $input = $input->except(['_token']);
         $input['author_id'] = \Auth::id();
+        $input['category_id'] = $category->id;
 
         // make sure we have permission to be here
         if (Lock::cannot('post', 'forum_frontend', $category->id)) {

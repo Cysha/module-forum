@@ -23,7 +23,7 @@ class ThreadCreateRequest extends Request
     {
         $prefix = config('cms.forum.config.table-prefix', 'forum_');
         return [
-            'name' => 'required|unique:'.$prefix.'posts,name',
+            'name' => 'required|unique:'.$prefix.'threads,name',
             'category_id' => 'required|exists:'.$prefix.'categories,id',
             'body' => 'required',
         ];

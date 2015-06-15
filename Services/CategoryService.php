@@ -1,7 +1,8 @@
 <?php namespace Cms\Modules\Forum\Services;
 
-use Cms\Modules\Forum\Repositories\Category\RepositoryInterface as CategoryRepo;
 use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
+use Cms\Modules\Forum\Models\Category;
+use Cms\Modules\Forum\Repositories\Category\RepositoryInterface as CategoryRepo;
 
 class CategoryService
 {
@@ -26,11 +27,15 @@ class CategoryService
         );
     }
 
-    public function getCreateData()
+    public function getCreateData(Category $category)
     {
         $data = [];
 
-        $data['categories'] = $this->getAllCategories();
+        $data['categories'] = $this->getAllCategories()->filter(function ($model) {
+            return Lock::can('post', 'forum_frontend', $model->id);
+        });
+
+        $data['category'] = $category->transform();
 
         return $data;
     }
