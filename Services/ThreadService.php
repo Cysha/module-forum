@@ -57,6 +57,7 @@ class ThreadService
         $data['posts'] = $pagination->transform(function ($model) {
             return $model->transform();
         });
+        $data['pagination'] = $pagination;
 
         return $data;
     }
