@@ -45,11 +45,11 @@ class Thread extends BaseModel
         return $this->posts->count();
     }
 
-    public function getLastPageAttribute()
+    public function getPaginationAttribute()
     {
         $paginator = new LengthAwarePaginator(new Collection(), $this->postCount, 10);
 
-        return $paginator->lastPage();
+        return $paginator->toArray();
     }
 
     public function transform()
@@ -63,9 +63,10 @@ class Thread extends BaseModel
             'created' => date_array($this->created_at),
             'updated' => date_array($this->updated_at),
 
+            'pagination' => $this->pagination,
             'links' => [
                 'self' => (string) $this->makeLink(true),
-                'last_page' => (string) $this->makeLink(true).'?page='.$this->lastPage,
+                'last_page' => (string) $this->makeLink(true).'?page='.array_get($this->pagination, 'last_page'),
                 'reply' => (string) $this->makeLink(true),
             ],
 
@@ -85,10 +86,10 @@ class Thread extends BaseModel
         if ($this->latestPost !== null) {
             $lastPost = $this->latestPost;
             $return['latestPost'] = (array) $lastPost->transform();
-            $return['last_post'] = (string) sprintf(
+            $return['links']['last_post'] = (string) sprintf(
                 '%s?page=%d#post-%s',
                 $this->makeLink(true),
-                $this->lastPage,
+                array_get($this->pagination, 'last_page'),
                 $lastPost->id
             );
         }

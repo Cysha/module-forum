@@ -27,11 +27,17 @@ class ThreadController extends BaseController
      *
      * @return View
      */
-    public function show($thread_id, ThreadService $threadService)
+    public function show($thread_id, ThreadService $threadService, Request $input)
     {
-        return $this->setView('frontend.pages.thread.index',
-            $threadService->getById($thread_id)
-        );
+        $data = $threadService->getById($thread_id);
+
+        // make sure page is in bounds
+        if ($input->get('page') > array_get($data, 'thread.pagination.last_page')) {
+            return redirect(array_get($data, 'thread.links.last_post'))
+                ->withInfo('Phew! You seemed to stray there, so we moved you back to the last post!');
+        }
+
+        return $this->setView('frontend.pages.thread.index', $data);
     }
 
     /**
