@@ -25,6 +25,7 @@ class ForumAddCategoryTable extends Migration
             $table->increments('id')->unsigned();
             $table->string('name');
             $table->string('slug');
+            $table->string('color');
             $table->tinyInteger('order')->default(0);
             $table->timestamps();
         });
