@@ -1,15 +1,16 @@
 <?php
 
+$serializer = new SuperClosure\Serializer;
 return [
     'Auth' => [
         'User' => [
-            'forumThreads' => function ($self) {
+            'forumThreads' => $serializer->serialize(function ($self) {
                 return $self->hasMany('Cms\Modules\Forum\Models\Thread');
-            },
+            }),
 
-            'forumPosts' => function ($self) {
+            'forumPosts' => $serializer->serialize(function ($self) {
                 return $self->hasMany('Cms\Modules\Forum\Models\Post');
-            },
+            }),
         ],
     ],
 ];
