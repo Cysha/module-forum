@@ -8,7 +8,7 @@ class Thread extends BaseModel
 
     protected $table = 'threads';
     protected $fillable = ['category_id', 'author_id', 'name', 'locked', 'views'];
-    protected $appends = ['postCount', 'lastPage'];
+    protected $appends = ['postCount', 'pagination'];
     protected $touches = ['category'];
 
     protected $identifiableName = 'name';

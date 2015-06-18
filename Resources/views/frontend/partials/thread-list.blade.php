@@ -1,9 +1,14 @@
-@forelse ($threads as $thread)
+@if (isset($threads))
+    @foreach($threads as $thread)
 
-    @include(partial('forum::frontend.partials.thread-single'), compact('thread'))
+        @include(partial('forum::frontend.partials.thread-single'), compact('thread'))
 
-@empty
+    @endforeach
+
+    @include(partial('forum::frontend.partials.pagination'), compact('pagination'))
+
+@else
 
     <div class="alert alert-warning"><strong>Warning:</strong> No Threads in this Category.</div>
 
-@endforelse
+@endif

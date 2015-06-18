@@ -5,11 +5,7 @@
 
     @endforeach
 
-    @if (isset($pagination) && $pagination->count())
-
-        {!! $pagination->render() !!}
-
-    @endif
+    @include(partial('forum::frontend.partials.pagination'), compact('pagination'))
 
 @else
 

@@ -21,29 +21,37 @@ class CategoryController extends BaseController
         $this->theme->prependTitle('Forum | ');
     }
 
-    public function getAll(ThreadService $thread)
+    public function getAll(ThreadService $threadService, Request $input)
     {
-        $data = [];
+        $data = $threadService->getAll();
 
-        $data['category'] = null;
-        $data['threads'] = $thread->getAll();
+        // make sure page is in bounds
+        if ($input->get('page') > $data['pagination']->lastPage()) {
+            return redirect(array_get($data, 'links.last_page'))
+                ->withInfo('Phew! You seemed to stray there, so we moved you back to the last page!');
+        }
 
         return $this->setView('frontend.pages.category.index', $data);
     }
 
-    public function show(Category $category, ThreadService $threadService)
+    public function show(Category $category, ThreadService $threadService, Request $input)
     {
         // make sure we have permission to be here
         if (Lock::cannot('read', 'forum_frontend', $category->id)) {
             return abort(404);
         }
 
+        $data = $threadService->getByCategory($category);
+
+        // make sure page is in bounds
+        if ($input->get('page') > array_get($data, 'pagination.last_page')) {
+            return redirect(array_get($data, 'links.last_page'))
+                ->withInfo('Phew! You seemed to stray there, so we moved you back to the last page!');
+        }
+
         // set teh breadcrumb & title
         $this->theme->breadcrumb()->add(array_get($category, 'name'), array_get($category, 'links.self'));
         $this->setTitle(array_get($category, 'name'));
-
-        $data['category'] = $category->transform();
-        $data['threads'] = $threadService->getByCategory($category);
 
         return $this->setView('frontend.pages.category.index', $data);
     }

@@ -22,14 +22,30 @@ class ThreadService
      */
     public function getAll()
     {
+        $data = [];
+        $data['category'] = null;
+
+        // grab the categories we have permissions to read
         $categories = $this->category->all()->filter(function ($model) {
             return Lock::can('read', 'forum_frontend', $model->id);
         });
 
+        // turn them into an array of ids
         $ids = $categories->lists('id')->toArray();
-        return $this->thread->transformModels(
-            $this->thread->getByCategories($ids)
-        );
+
+        // then get the threads for these ids
+        $pagination = $this->thread->getByCategories($ids, 10);
+
+        // then paginate those
+        $data['threads'] = $pagination->transform(function ($model) {
+            return $model->transform();
+        });
+        $data['pagination'] = $pagination;
+
+        $data['links']['last_page'] = route('pxcms.forum.index').'?page='.$pagination->lastPage();
+
+        // and throw it all back to the view
+        return $data;
     }
 
     public function getByCategory(Category $category)
@@ -38,9 +54,17 @@ class ThreadService
             return abort(404);
         }
 
-        return $this->thread->transformModels(
-            $this->thread->getByCategory($category->id)
-        );
+        $data = [];
+
+        $data['category'] = $category->transform();
+
+        $pagination = $category->threads()->paginate(10);
+        $data['threads'] = $pagination->transform(function ($model) {
+            return $model->transform();
+        });
+        $data['pagination'] = $pagination;
+
+        return $data;
     }
 
     public function getById($id)

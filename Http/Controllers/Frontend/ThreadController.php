@@ -78,7 +78,7 @@ class ThreadController extends BaseController
         // grab it again just to get teh updated info
         $thread = $threadService->getById($thread_id);
 
-        return redirect(array_get($thread, 'thread.links.self'))
+        return redirect(array_get($thread, 'thread.links.last_post'))
             ->withInfo('Replied successfully.');
     }
 

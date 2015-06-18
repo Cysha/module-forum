@@ -21,13 +21,16 @@ class EloquentRepository extends BaseEloquentRepository implements RepositoryInt
         return $this->getByCategories($category_id);
     }
 
-    public function getByCategories(array $category_ids)
+    public function getByCategories(array $category_ids, $paginate = false)
     {
-        return $this->model
+        $query = $this->model
             ->with(['posts', 'latestPost.author', 'author'])
             ->whereIn('category_id', $category_ids)
-            ->orderBy('updated_at', 'desc')
-            ->get();
+            ->orderBy('updated_at', 'desc');
+
+
+
+        return $paginate === false ? $query->get() : $query->paginate($paginate);
     }
 
     public function getById($thread_id)

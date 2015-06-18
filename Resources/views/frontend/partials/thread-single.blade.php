@@ -8,9 +8,7 @@
         </div>
         <div class="row">
             <a href="{{ array_get($thread, 'category.links.self') }}">
-                <span class="label label-info">
-                <i class="fa fa-circle fa-fw"></i> {{ array_get($thread, 'category.name') }}
-                </span>
+                {!! array_get($thread, 'category.label') !!}
             </a>&nbsp;
             @if (array_get($thread, 'post_count')-1 <= 0)
             <span>Posted {!! array_get($thread, 'created.element') !!} by {!! array_get($thread, 'author.link') !!}</span>

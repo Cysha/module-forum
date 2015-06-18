@@ -1,11 +1,14 @@
 <?php namespace Cms\Modules\Forum\Models;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+
 class Category extends BaseModel
 {
 
     protected $table = 'categories';
-    protected $fillable = ['name', 'slug', 'order'];
-    protected $appends = ['threadCount'];
+    protected $fillable = ['name', 'slug', 'order', 'color'];
+    protected $appends = ['threadCount', 'label', 'pagination'];
 
     protected $identifiableName = 'name';
     protected $link = [
@@ -42,6 +45,18 @@ class Category extends BaseModel
         return 0;
     }
 
+    public function getLabelAttribute($value)
+    {
+        return sprintf('<span class="label label-default" style="background-color: %s;"><i class="fa fa-circle fa-fw"></i> %s</span>', $this->color, $this->name);
+    }
+
+    public function getPaginationAttribute()
+    {
+        $paginator = new LengthAwarePaginator(new Collection(), $this->threadCount, 10);
+
+        return $paginator->toArray();
+    }
+
     public function transform()
     {
         $return = [
@@ -51,12 +66,16 @@ class Category extends BaseModel
             'order' => $this->order,
             'thread_count' => (int) 0,
 
+            'label' => $this->label,
+
+            'pagination' => $this->pagination,
             'links' => [
                 'self' => (string) $this->makeLink(true),
                 'create' => (string) route('forum.thread.create', [
                     'forum_frontend_id' => $this->id,
                     'forum_frontend_name' => $this->slug
                 ]),
+                'last_page' => (string) $this->makeLink(true).'?page='.array_get($this->pagination, 'last_page'),
             ],
         ];
 

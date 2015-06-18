@@ -4,9 +4,9 @@
             <span class="glyphicon glyphicon-chevron-down"></span>
         </span>
         <ul class="dropdown-menu" role="menu">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ array_get($post, 'post_url') }}">Link to Post</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Post</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Quote Post</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ array_get($post, 'links.self') }}">Link to Post</a></li>
+            {{-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Post</a></li> --}}
+            {{-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Quote Post</a></li> --}}
         </ul>
     </div>
     <div class="panel-tags">
