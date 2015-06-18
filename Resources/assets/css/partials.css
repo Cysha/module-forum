@@ -94,6 +94,33 @@
   color: white;
   text-decoration: none;
 }
+.forum-partials.top-posters {
+  margin-bottom: 3px;
+}
+.forum-partials.top-posters > .avatar {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .forum-partials.top-posters > .avatar {
+    float: left;
+    width: 41.6667%;
+  }
+}
+.forum-partials.top-posters > .info {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .forum-partials.top-posters > .info {
+    float: left;
+    width: 58.3333%;
+  }
+}
 .forum-partials.post-row {
   position: relative;
   border-radius: 0px;

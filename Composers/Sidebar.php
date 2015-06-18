@@ -1,15 +1,18 @@
 <?php namespace Cms\Modules\Forum\Composers;
 
 use Cms\Modules\Forum\Services\CategoryService;
+use Cms\Modules\Auth\Repositories\User\RepositoryInterface as UserRepo;
 
 class Sidebar
 {
 
     protected $category;
+    protected $user;
 
-    public function __construct(CategoryService $category)
+    public function __construct(CategoryService $category, UserRepo $user)
     {
         $this->category = $category;
+        $this->user = $user;
     }
 
     public function categoryList($view)
@@ -22,5 +25,28 @@ class Sidebar
         }
 
         $view->with('forum_categories', $categories);
+    }
+
+    public function topPosters($view)
+    {
+        $users = $this->user->with(['forumPosts'])->limit(5)->all();
+
+        if ($users === false || !count($users)) {
+            $view->with('forum_posters', []);
+            return;
+        }
+
+        $userList = [];
+        foreach ($users as $user) {
+            $tx = $user->transform();
+            $tx['post_count'] = $user->forumPosts->count();
+
+            $userList[] = $tx;
+        }
+        usort($userList, function ($a, $b) {
+            return array_get($a, 'post_count', 1)<array_get($b, 'post_count', 1);
+        });
+
+        $view->with('forum_posters', $userList);
     }
 }

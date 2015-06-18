@@ -24,7 +24,7 @@ class EloquentRepository extends BaseEloquentRepository implements RepositoryInt
     public function getByCategories(array $category_ids, $paginate = false)
     {
         $query = $this->model
-            ->with(['posts', 'latestPost.author', 'author'])
+            ->with(['category', 'posts', 'latestPost.author', 'author'])
             ->whereIn('category_id', $category_ids)
             ->orderBy('updated_at', 'desc');
 

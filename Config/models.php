@@ -9,7 +9,7 @@ return [
             }),
 
             'forumPosts' => $serializer->serialize(function ($self) {
-                return $self->hasMany('Cms\Modules\Forum\Models\Post');
+                return $self->hasMany('Cms\Modules\Forum\Models\Post', 'author_id');
             }),
         ],
     ],
