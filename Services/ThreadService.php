@@ -58,7 +58,7 @@ class ThreadService
 
         $data['category'] = $category->transform();
 
-        $pagination = $category->threads()->paginate(10);
+        $pagination = $this->thread->getByCategory($category->id, 10);
         $data['threads'] = $pagination->transform(function ($model) {
             return $model->transform();
         });

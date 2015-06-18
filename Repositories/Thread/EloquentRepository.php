@@ -12,13 +12,13 @@ class EloquentRepository extends BaseEloquentRepository implements RepositoryInt
     }
 
 
-    public function getByCategory($category_id)
+    public function getByCategory($category_id, $paginate = false)
     {
         if (!is_array($category_id)) {
             $category_id = [$category_id];
         }
 
-        return $this->getByCategories($category_id);
+        return $this->getByCategories($category_id, $paginate);
     }
 
     public function getByCategories(array $category_ids, $paginate = false)
@@ -27,8 +27,6 @@ class EloquentRepository extends BaseEloquentRepository implements RepositoryInt
             ->with(['posts', 'latestPost.author', 'author'])
             ->whereIn('category_id', $category_ids)
             ->orderBy('updated_at', 'desc');
-
-
 
         return $paginate === false ? $query->get() : $query->paginate($paginate);
     }

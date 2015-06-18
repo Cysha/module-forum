@@ -41,7 +41,7 @@ class CategoryController extends BaseController
             return abort(404);
         }
 
-        $data = $threadService->getByCategory($category);
+        $data = $threadService->getByCategory($category, 10);
 
         // make sure page is in bounds
         if ($input->get('page') > array_get($data, 'pagination.last_page')) {
