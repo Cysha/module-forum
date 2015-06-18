@@ -26,8 +26,9 @@ class ThreadService
             return Lock::can('read', 'forum_frontend', $model->id);
         });
 
+        $ids = $categories->lists('id')->toArray();
         return $this->thread->transformModels(
-            $this->thread->whereIn('category_id', $categories->lists('id')->toArray())->get()
+            $this->thread->getByCategories($ids)
         );
     }
 
