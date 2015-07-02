@@ -10,6 +10,7 @@ class Post extends BaseModel
     protected $table = 'posts';
     protected $fillable = ['thread_id', 'author_id', 'body'];
     protected $appends = ['post_url'];
+    protected $with = ['author'];
     protected $touches = ['thread'];
 
     public function thread()
@@ -19,7 +20,9 @@ class Post extends BaseModel
 
     public function author()
     {
-        return $this->belongsTo('Cms\Modules\Auth\Models\User');
+        $model = config('auth.model');
+
+        return $this->belongsTo($model);
     }
 
     public function getBodyAttribute($value)

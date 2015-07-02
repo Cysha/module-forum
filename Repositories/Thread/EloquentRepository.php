@@ -11,7 +11,6 @@ class EloquentRepository extends BaseEloquentRepository implements RepositoryInt
         return 'Cms\Modules\Forum\Models\Thread';
     }
 
-
     public function getByCategory($category_id, $paginate = false)
     {
         if (!is_array($category_id)) {
@@ -26,7 +25,8 @@ class EloquentRepository extends BaseEloquentRepository implements RepositoryInt
         $query = $this->model
             ->with(['category', 'posts', 'latestPost.author', 'author'])
             ->whereIn('category_id', $category_ids)
-            ->orderBy('updated_at', 'desc');
+            ->orderBy('updated_at', 'desc')
+            ->select(['forum_threads.id', 'forum_threads.category_id', 'forum_threads.author_id', 'forum_threads.name', 'forum_threads.created_at']);
 
         return $paginate === false ? $query->get() : $query->paginate($paginate);
     }

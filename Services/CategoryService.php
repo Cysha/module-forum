@@ -1,8 +1,9 @@
 <?php namespace Cms\Modules\Forum\Services;
 
 use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
-use Cms\Modules\Forum\Models\Category;
 use Cms\Modules\Forum\Repositories\Category\RepositoryInterface as CategoryRepo;
+use Cms\Modules\Forum\Models\Category;
+use Cms\Modules\Auth\Models\Role;
 
 class CategoryService
 {
@@ -27,6 +28,29 @@ class CategoryService
         );
     }
 
+    public function create(array $data)
+    {
+        // create the category
+        $category = $this->category->create($data);
+        if ($category === null) {
+            return false;
+        }
+
+        // duplicate the frontend permissions
+        $permissions = config('cms.forum.permissions.forum_frontend');
+
+        // attach em to the admin group, will sort the rest of the perms out manually
+        $role = Role::find(config('cms.auth.config.roles.admin_group'));
+        foreach ($permissions as $permission => $description) {
+
+            app('BeatSwitch\Lock\Manager')
+                ->role($role->name)
+                ->allow($permission, 'forum_frontend', $category->id);
+        }
+
+        return $category;
+    }
+
     public function getCreateData(Category $category)
     {
         $data = [];
@@ -40,12 +64,14 @@ class CategoryService
         return $data;
     }
 
-    protected function getAllCategories()
+    public function getAllCategories()
     {
-        $models = $this->category
-            ->with(['threadCount'])
-            ->orderBy('order', 'asc')
-            ->get();
+        $models = cache_forever('forum_categories', 'getAllCategories', function () {
+            return $this->category
+                ->with(['threadCount'])
+                ->orderBy('order', 'asc')
+                ->get();
+        });
 
         return $models->filter(function ($model) {
             return Lock::can('read', 'forum_frontend', $model->id);

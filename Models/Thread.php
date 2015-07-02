@@ -22,12 +22,15 @@ class Thread extends BaseModel
 
     public function posts()
     {
-        return $this->hasMany(__NAMESPACE__.'\Post');
+        return $this->hasMany(__NAMESPACE__.'\Post')
+            ->select(['forum_posts.id', 'forum_posts.thread_id', 'forum_posts.author_id', 'forum_posts.body', 'forum_posts.created_at']);
     }
 
     public function latestPost()
     {
-        return $this->hasOne(__NAMESPACE__.'\Post')->latest();
+        return $this->hasOne(__NAMESPACE__.'\Post')
+            ->latest()
+            ->select(['forum_posts.id', 'forum_posts.thread_id', 'forum_posts.author_id', 'forum_posts.updated_at']);
     }
 
     public function category()

@@ -17,7 +17,9 @@ class Sidebar
 
     public function categoryList($view)
     {
-        $categories = $this->category->all();
+        $categories = $this->category->getAllCategories()->transform(function ($model) {
+            return $model->transform();
+        });
 
         if ($categories === false || !count($categories)) {
             $view->with('forum_categories', []);
@@ -29,22 +31,26 @@ class Sidebar
 
     public function topPosters($view)
     {
-        $users = $this->user->with(['forumPosts'])->limit(5)->all();
+        $userList = cache_forever('forum_sidebars', 'sidebar_topposters', function () {
+            $users = $this->user->with(['forumPosts'])->limit(5)->all();
 
-        if ($users === false || !count($users)) {
-            $view->with('forum_posters', []);
-            return;
-        }
+            if ($users === false || !count($users)) {
+                $view->with('forum_posters', []);
+                return;
+            }
 
-        $userList = [];
-        foreach ($users as $user) {
-            $tx = $user->transform();
-            $tx['post_count'] = $user->forumPosts->count();
+            $userList = [];
+            foreach ($users as $user) {
+                $tx = $user->transform();
+                $tx['post_count'] = $user->forumPosts->count();
 
-            $userList[] = $tx;
-        }
-        usort($userList, function ($a, $b) {
-            return array_get($a, 'post_count', 1)<array_get($b, 'post_count', 1);
+                $userList[] = $tx;
+            }
+            usort($userList, function ($a, $b) {
+                return array_get($a, 'post_count', 1)<array_get($b, 'post_count', 1);
+            });
+
+            return $userList;
         });
 
         $view->with('forum_posters', $userList);

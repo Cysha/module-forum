@@ -9,6 +9,9 @@ class Category extends BaseModel
     protected $table = 'categories';
     protected $fillable = ['name', 'slug', 'order', 'color'];
     protected $appends = ['threadCount', 'label', 'pagination'];
+    protected $casts = [
+        'order' => 'int',
+    ];
 
     protected $identifiableName = 'name';
     protected $link = [

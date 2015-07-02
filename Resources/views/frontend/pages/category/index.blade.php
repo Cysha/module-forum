@@ -13,4 +13,4 @@
 @include(partial('forum::frontend.partials.thread-list'), compact('threads'))
 
 @include(partial('forum::frontend.partials.permissions'), compact('category'))
-@include(partial('forum::frontend.partials.group-permissions'))
+{{-- @include(partial('forum::frontend.partials.group-permissions')) --}}
