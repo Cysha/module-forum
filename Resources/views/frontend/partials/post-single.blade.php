@@ -16,7 +16,7 @@
     </div>
     <div class="panel-heading">
         <img class="img-circle pull-left" src="{{ array_get($post, 'author.avatar') }}" />
-        <h3>{{ array_get($post, 'author.screenname') }}</h3>
+        <h3>{!! array_get($post, 'author.links.html') !!}</h3>
         <h5><span>Posted</span> - {!! array_get($post, 'created.element') !!} </h5>
     </div>
     <div class="panel-body">

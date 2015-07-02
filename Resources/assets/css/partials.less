@@ -1,6 +1,7 @@
-@import '../../../../../../app/assets/vendor/bootstrap/less/variables.less';
-@import '../../../../../../app/assets/vendor/bootstrap/less/mixins.less';
-@import '../../../../../../app/assets/vendor/bootstrap/less/utilities.less';
+@import '../../../../../../themes/cysha/Resources/assets/vendor/bootstrap/less/variables.less';
+@import '../../../../../../themes/cysha/Resources/assets/vendor/bootstrap/less/mixins.less';
+@import '../../../../../../themes/cysha/Resources/assets/vendor/bootstrap/less/utilities.less';
+@import '../../../../../../themes/cysha/Resources/assets/less/variables.less';
 
 .forum-partials {
 
@@ -9,25 +10,37 @@
 
 
         > .avatar {
-            .make-md-column(2);
+            @media @lt-sm {
+                .hide;
+            }
         }
 
         > .info {
+            .make-xs-column(10);
             .make-md-column(8);
         }
 
         > .replies {
-            .make-md-column(2);
+            .make-xs-column(2);
         }
 
-        a > .label {
-            padding: 0.3em 0.6em 0.3em;
-            font-size: 85%;
+        @media @lt-xs {
+            .row > a {
+                .hide;
+            }
         }
 
-        a:hover > .label, a:active > .label, a.active > .label {
-            color: white;
-            text-decoration: none;
+        a {
+            &:hover, &:active, &.active {
+                text-decoration: none;
+            }
+
+            > .label {
+                color: white;
+                background-color: attr(data-label);
+                padding: 0.3em 0.6em 0.3em;
+                font-size: 85%;
+            }
         }
     }
 
@@ -35,11 +48,11 @@
         margin-bottom: 3px;
 
         > .avatar {
-            .make-md-column(5);
+            .make-xs-column(5);
         }
 
         > .info {
-            .make-md-column(7);
+            .make-xs-column(7);
         }
     }
 
@@ -160,6 +173,16 @@
             }
         }
 
+    }
+
+    .avatar {
+        .make-sm-column(2);
+        padding-top: 10px;
+
+        > img {
+            height: 54px;
+            width: 54px;
+        }
     }
 }
 

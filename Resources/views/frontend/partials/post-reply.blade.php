@@ -8,7 +8,7 @@
 {!! Former::open() !!}
     <div class="form-group">
         <div class="col-md-2 text-center">
-            <img src="{{ Auth::user()->avatar }}" class="img-circle">
+            <img src="{{ Auth::user()->avatar }}" class="img-circle img-responsive">
         </div>
         <div class="col-md-10">
             <strong>{{ Auth::user()->screenname }}</strong>

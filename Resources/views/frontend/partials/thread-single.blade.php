@@ -11,9 +11,9 @@
                 {!! array_get($thread, 'category.label') !!}
             </a>&nbsp;
             @if (array_get($thread, 'post_count')-1 <= 0)
-            <span>Posted {!! array_get($thread, 'created.element') !!} by {!! array_get($thread, 'author.link') !!}</span>
+            <span>Posted {!! array_get($thread, 'created.element') !!} by {!! array_get($thread, 'author.links.html') !!}</span>
             @else
-            <span>Last Updated {!! array_get($thread, 'latestPost.updated.element') !!} by {!! array_get($thread, 'latestPost.author.link') !!}</span>
+            <span>Last Updated {!! array_get($thread, 'latestPost.updated.element') !!} by {!! array_get($thread, 'latestPost.author.links.html') !!}</span>
             @endif
         </div>
     </div>

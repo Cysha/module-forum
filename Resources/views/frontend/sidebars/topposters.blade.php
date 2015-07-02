@@ -5,9 +5,9 @@
         <div class="avatar text-center">
             <img src="{{ array_get($user, 'avatar') }}" class="img-circle">
         </div>
-        <div class="info col-md-8">
+        <div class="info">
             <div class="row">
-                <h4><a href="{{ array_get($user, 'href') }}">{{ array_get($user, 'screenname')}}</a></h4>
+                <h4>{!! array_get($user, 'links.html') !!}</h4>
             </div>
             <div class="row">
                 <p>Post Count: {{ array_get($user, 'post_count') }}</p>

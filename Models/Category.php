@@ -50,7 +50,7 @@ class Category extends BaseModel
 
     public function getLabelAttribute($value)
     {
-        return sprintf('<span class="label label-default" style="background-color: %s;"><i class="fa fa-circle fa-fw"></i> %s</span>', $this->color, $this->name);
+        return sprintf('<span class="label label-default" data-label="%s"><i class="fa fa-circle fa-fw"></i> %s</span>', $this->color, $this->name);
     }
 
     public function getPaginationAttribute()
