@@ -11,6 +11,7 @@
         </a>
     @endforeach
 </div>
+
 @else
     <div class="alert alert-info">No Categories Found</div>
 @endif

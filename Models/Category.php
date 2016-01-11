@@ -17,8 +17,8 @@ class Category extends BaseModel
     protected $link = [
         'route' => 'forum.category.show',
         'attributes' => [
-            'forum_frontend_id' => 'id',
-            'forum_frontend_name' => 'slug'
+            'forum_category_id' => 'id',
+            'forum_category_name' => 'slug'
         ],
     ];
 
@@ -62,6 +62,12 @@ class Category extends BaseModel
 
     public function transform()
     {
+        $self = $this->makeLink(true);
+        $lastPage = null;
+        if (($page = array_get($this->pagination, 'last_page')) > 0) {
+            $lastPage = '?page='.array_get($this->pagination, 'last_page');
+        }
+
         $return = [
             'id' => $this->id,
             'name' => $this->name,
@@ -73,12 +79,12 @@ class Category extends BaseModel
 
             'pagination' => $this->pagination,
             'links' => [
-                'self' => (string) $this->makeLink(true),
+                'self' => (string) $self,
                 'create' => (string) route('forum.thread.create', [
                     'forum_frontend_id' => $this->id,
                     'forum_frontend_name' => $this->slug
                 ]),
-                'last_page' => (string) $this->makeLink(true).'?page='.array_get($this->pagination, 'last_page'),
+                'last_page' => (string) $self . $lastPage,
             ],
         ];
 

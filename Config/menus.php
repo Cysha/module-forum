@@ -33,13 +33,6 @@ return [
             'order' => 1,
             'permission' => 'update@forum_backend',
         ],
-        [
-            'route' => ['backend.forum.category.permissions', ['forum_category_id' => 'segment:4']],
-            'text' => 'Permissions',
-            'icon' => 'fa-key',
-            'order' => 2,
-            'permission' => 'update@forum_backend',
-        ],
     ],
 
 ];

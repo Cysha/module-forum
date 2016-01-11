@@ -10,6 +10,9 @@ class CreateController extends BaseController
 
     public function getForm()
     {
+        $this->theme->setTitle('Create Category');
+        $this->theme->breadcrumb()->add('Create Category', route('backend.forum.category.create'));
+
         return $this->setView('backend.category.basic', [
             'category' => with(new Category),
         ]);

@@ -13,7 +13,7 @@ class BaseController extends BaseBackendController
         parent::boot();
 
         $this->theme->setTitle('Forum');
-        $this->theme->breadcrumb()->add('Category Manager', '#');
+        $this->theme->breadcrumb()->add('Forum', '#');
     }
 
     public function getDetails(Category $category)

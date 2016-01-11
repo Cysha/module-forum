@@ -28,8 +28,8 @@ class ForumAddPostTable extends Migration
             $table->text('body');
             $table->timestamps();
 
-            $table->foreign('thread_id')->references('id')->on($prefix.'threads');
-            $table->foreign('author_id')->references('id')->on(with(new $authModel)->getTable());
+            // $table->foreign('thread_id')->references('id')->on($prefix.'threads');
+            // $table->foreign('author_id')->references('id')->on(with(new $authModel)->getTable());
         });
     }
 
@@ -43,10 +43,10 @@ class ForumAddPostTable extends Migration
         $prefix = $this->prefix;
 
         // drop the key first
-        Schema::table($prefix.'threads', function ($table) use ($prefix) {
-            $table->dropForeign($prefix.'posts_thread_id_foreign');
-            $table->dropForeign($prefix.'posts_author_id_foreign');
-        });
+        // Schema::table($prefix.'threads', function ($table) use ($prefix) {
+        //     $table->dropForeign($prefix.'posts_thread_id_foreign');
+        //     $table->dropForeign($prefix.'posts_author_id_foreign');
+        // });
         // then the table
         Schema::drop($prefix.'posts');
     }

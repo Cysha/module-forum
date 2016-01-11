@@ -30,8 +30,8 @@ class ForumAddThreadTable extends Migration
             $table->integer('views')->default(0);
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on($prefix.'categories');
-            $table->foreign('author_id')->references('id')->on(with(new $authModel)->getTable());
+            // $table->foreign('category_id')->references('id')->on($prefix.'categories');
+            // $table->foreign('author_id')->references('id')->on(with(new $authModel)->getTable());
         });
     }
 
@@ -45,10 +45,10 @@ class ForumAddThreadTable extends Migration
         $prefix = $this->prefix;
 
         // drop the key first
-        Schema::table($prefix.'threads', function ($table) use ($prefix) {
-            $table->dropForeign($prefix.'threads_category_id_foreign');
-            $table->dropForeign($prefix.'threads_author_id_foreign');
-        });
+        // Schema::table($prefix.'threads', function ($table) use ($prefix) {
+        //     $table->dropForeign($prefix.'threads_category_id_foreign');
+        //     $table->dropForeign($prefix.'threads_author_id_foreign');
+        // });
         // then the table
         Schema::drop($prefix.'threads');
     }
