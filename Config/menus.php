@@ -16,7 +16,7 @@ return [
                 ],
                 [
                     'route' => 'backend.forum.permissions.manager',
-                    'text' => 'Category Permissions Manager',
+                    'text' => 'Permissions Manager',
                     'icon' => 'fa-lock',
                     'order' => 2,
                     'permission' => 'create@forum_backend',

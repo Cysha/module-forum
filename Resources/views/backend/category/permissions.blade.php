@@ -1,6 +1,13 @@
 @extends(partial('auth::admin.user._layout'))
 
 @section('user-form')
+
+@if(empty($keys))
+
+    <div class="alert alert-info">
+        <strong>Information:</strong> You will need some Forum Categories to assign permissions to...
+    </div>
+@else
 {!! Former::horizontal_open() !!}
     <div class="panel panel-default panel-permissions">
         <div class="panel-heading">
@@ -122,4 +129,5 @@
     });
 })(jQuery);
 </script>
+@endif
 @stop
