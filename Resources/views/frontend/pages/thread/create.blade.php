@@ -11,7 +11,7 @@
     <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
         <label class="col-sm-3 control-label">Body</label>
         <div class="col-sm-9">
-            @include(config('cms.core.app.default-editor'), ['id' => 'body', 'content' => null])
+            @include(config('cms.core.app.default-editor'), ['id' => 'body', 'content' => null, 'tabindex' => '2'])
         </div>
     </div>
 
