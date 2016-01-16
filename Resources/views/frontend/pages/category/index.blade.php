@@ -5,7 +5,7 @@
 
             @if (array_get($category, 'name', null) !== null)
             <a href="{{ array_get($category, 'links.create') }}" class="btn-labeled btn btn-success pull-right">
-                <span class="btn-label"><i class="fa fa-plus fa-fw"></i></span> New Thread
+                <span class="btn-label"><i class="fa fa-comment fa-fw"></i></span> New Thread
             </a>
             @endif
 
