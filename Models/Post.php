@@ -32,8 +32,16 @@ class Post extends BaseModel
 
     public function getPostUrlAttribute()
     {
+        $threadName = 'unknown';
+        if ($this->thread !== null) {
+            $threadName = $this->thread->slug;
+        }
+
         return sprintf('%s?page=%d#post-%s',
-            Request::url(),
+            route('forum.thread.show', [
+                'forum_thread_id' => $this->thread_id,
+                'forum_thread_name' => $threadName
+            ]),
             Request::input('page', 1),
             $this->id
         );
@@ -45,11 +53,13 @@ class Post extends BaseModel
             'id' => $this->id,
             'thread_id' => $this->thread_id,
             'body' => $this->body,
+            'original_body' => $this->getOriginal('body'),
             'created' => date_array($this->created_at),
             'updated' => date_array($this->updated_at),
 
             'links' => [
                 'self' => (string) $this->post_url,
+                'edit' => route('forum.post.edit', $this->id),
             ],
 
             'author' => [],

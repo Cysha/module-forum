@@ -11,7 +11,6 @@ $router->group(['prefix' => 'forum'], function (Router $router) {
             $router->post('create', ['uses' => 'CategoryController@store']);
             $router->get('create', ['as' => 'forum.thread.create', 'uses' => 'CategoryController@create']);
 
-
             $router->get('/', ['as' => 'forum.category.show', 'uses' => 'CategoryController@show']);
         });
 
@@ -28,6 +27,15 @@ $router->group(['prefix' => 'forum'], function (Router $router) {
     });
 
 
+    $router->group(['prefix' => 'post'], function (Router $router) {
+
+        $router->group(['prefix' => '{forum_post_id}'], function (Router $router) {
+
+            $router->post('edit', ['uses' => 'PostController@postForm']);
+            $router->get('edit', ['as' => 'forum.post.edit', 'uses' => 'PostController@getForm']);
+        });
+
+    });
 
     $router->get('/', ['as' => 'pxcms.forum.index', 'uses' => 'CategoryController@getAll']);
 });

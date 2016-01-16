@@ -47,5 +47,11 @@ class ForumRoutingProvider extends CmsRoutingProvider
         //    return with(new \Cms\Modules\Forum\Models\Thread)
         //        ->findOrFail($id);
         //});
+
+        $router->bind('forum_post_id', function ($id) {
+           return with(new \Cms\Modules\Forum\Models\Post)
+                ->with('thread')
+                ->findOrFail($id);
+        });
     }
 }

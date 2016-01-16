@@ -10,4 +10,11 @@ class EloquentRepository extends BaseEloquentRepository implements RepositoryInt
     {
         return 'Cms\Modules\Forum\Models\Post';
     }
+
+    public function getById($thread_id)
+    {
+        return $this->model
+            ->with(['author', 'thread', 'thread.category'])
+            ->findOrFail($thread_id);
+    }
 }
