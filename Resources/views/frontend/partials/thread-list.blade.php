@@ -1,4 +1,4 @@
-@if (isset($threads))
+@if (isset($threads) && $threads->count())
     @foreach($threads as $thread)
 
         @include(partial('forum::frontend.partials.thread-single'), compact('thread'))

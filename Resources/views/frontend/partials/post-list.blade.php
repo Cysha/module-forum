@@ -1,4 +1,4 @@
-@if (isset($posts))
+@if (isset($posts) && $posts->count())
     @foreach($posts as $post)
 
         @include(partial('forum::frontend.partials.post-single'), compact('post'))
