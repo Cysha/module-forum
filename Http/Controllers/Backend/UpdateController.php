@@ -1,6 +1,5 @@
 <?php namespace Cms\Modules\Forum\Http\Controllers\Backend;
 
-use Cms\Modules\Core\Http\Controllers\BaseBackendController;
 use Cms\Modules\Forum\Models\Category;
 use Illuminate\Http\Request;
 
@@ -10,6 +9,7 @@ class UpdateController extends BaseController
     public function getForm(Category $category)
     {
         $this->getDetails($category);
+        $this->formAssets();
 
         return $this->setView('backend.category.basic', [
             'category' => $category,

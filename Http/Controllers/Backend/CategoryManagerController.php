@@ -1,10 +1,9 @@
 <?php namespace Cms\Modules\Forum\Http\Controllers\Backend;
 
 use Cms\Modules\Admin\Traits\DataTableTrait;
-use Cms\Modules\Core\Http\Controllers\BaseBackendController;
 use Cms\Modules\Forum\Datatables\CategoryManager;
 
-class CategoryManagerController extends BaseBackendController
+class CategoryManagerController extends BaseController
 {
     use DataTableTrait;
 

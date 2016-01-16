@@ -4,7 +4,6 @@ use BeatSwitch\Lock\Manager;
 use Cms\Modules\Auth\Models\Permission;
 use Cms\Modules\Auth\Models\Role;
 use Cms\Modules\Auth\Repositories\Role\RepositoryInterface as RoleRepo;
-use Cms\Modules\Core\Http\Controllers\BaseBackendController;
 use Cms\Modules\Forum\Repositories\Category\RepositoryInterface as CategoryRepo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

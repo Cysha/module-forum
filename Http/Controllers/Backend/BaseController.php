@@ -13,7 +13,12 @@ class BaseController extends BaseBackendController
         parent::boot();
 
         $this->theme->setTitle('Forum');
-        $this->theme->breadcrumb()->add('Forum', '#');
+        $this->theme->breadcrumb()->add('Forum', route('backend.forum.category.manager'));
+    }
+
+    public function formAssets()
+    {
+        $this->theme->asset()->add('slugify', 'modules/forum/backend/js/editor.js', ['app.js']);
     }
 
     public function getDetails(Category $category)

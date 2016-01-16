@@ -1,6 +1,5 @@
 <?php namespace Cms\Modules\Forum\Http\Controllers\Backend;
 
-use Cms\Modules\Core\Http\Controllers\BaseBackendController;
 use Cms\Modules\Forum\Services\CategoryService;
 use Cms\Modules\Forum\Models\Category;
 use Illuminate\Http\Request;
@@ -12,6 +11,7 @@ class CreateController extends BaseController
     {
         $this->theme->setTitle('Create Category');
         $this->theme->breadcrumb()->add('Create Category', route('backend.forum.category.create'));
+        $this->formAssets();
 
         return $this->setView('backend.category.basic', [
             'category' => with(new Category),
