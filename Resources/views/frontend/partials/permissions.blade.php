@@ -1,4 +1,4 @@
-@if (!empty($category))
+@if (!empty($category) && Auth::check())
 <div class="row">
     <div class="col-md-3 pull-right">
         <div class="panel panel-default">
