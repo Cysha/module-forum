@@ -1,11 +1,11 @@
 <div class="page-header">
     <h2>
-        {{ array_get($category, 'name', 'All Threads') }}
+        {{ array_get($category, 'name', trans('forum::common.titles.all_threads')) }}
         @if (Auth::check() && Lock::can('post', 'forum_frontend', $category['id']))
 
             @if (array_get($category, 'name', null) !== null)
             <a href="{{ array_get($category, 'links.create') }}" class="btn-labeled btn btn-success pull-right">
-                <span class="btn-label"><i class="fa fa-comment fa-fw"></i></span> New Thread
+                <span class="btn-label"><i class="fa fa-comment fa-fw"></i></span> {{ trans('forum::common.titles.new_thread') }}
             </a>
             @endif
 

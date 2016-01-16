@@ -9,6 +9,6 @@
 
 @else
 
-    <div class="alert alert-warning"><strong>Warning:</strong> No Posts in this Thread.</div>
+    <div class="alert alert-warning"><strong>Warning:</strong> {{ trans('forum::common.messages.no_posts') }}</div>
 
 @endif

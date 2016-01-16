@@ -16,9 +16,9 @@ class CategoryController extends BaseController
     {
         $this->setSidebar('forum_default');
 
-        $this->theme->breadcrumb()->add('Forum', route('pxcms.forum.index'));
+        $this->theme->breadcrumb()->add(trans('forum::common.forum'), route('pxcms.forum.index'));
         $this->theme->asset()->add('forum_partials', 'modules/forum/css/partials.css', ['theme']);
-        $this->theme->prependTitle('Forum | ');
+        $this->theme->prependTitle(trans('forum::common.forum').' | ');
     }
 
     public function getAll(ThreadService $threadService, Request $input)
@@ -28,7 +28,7 @@ class CategoryController extends BaseController
         // make sure page is in bounds
         if ($input->get('page') > $data['pagination']->lastPage()) {
             return redirect(array_get($data, 'links.last_page'))
-                ->withInfo('Phew! You seemed to stray there, so we moved you back to the last page!');
+                ->withInfo(trans('forum::common.messages.last_page'));
         }
 
         return $this->setView('frontend.pages.category.index', $data);
@@ -46,7 +46,7 @@ class CategoryController extends BaseController
         // make sure page is in bounds
         if ($input->get('page') > array_get($data, 'pagination.last_page')) {
             return redirect(array_get($data, 'links.last_page'))
-                ->withInfo('Phew! You seemed to stray there, so we moved you back to the last page!');
+                ->withInfo(trans('forum::common.messages.last_page'));
         }
 
         // set teh breadcrumb & title
@@ -94,10 +94,10 @@ class CategoryController extends BaseController
         $thread = $threadService->create($input, $category);
         if ($thread === false) {
             return redirect()->back()
-                ->withError('Thread could not be created, please try again.');
+                ->withError(trans('forum::common.messages.thread_not_created'));
         }
 
         return redirect(array_get($thread->transform(), 'links.self'))
-            ->withInfo('Thread created successfully.');
+            ->withInfo(trans('forum::common.messages.thread_created'));
     }
 }

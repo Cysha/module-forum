@@ -15,9 +15,9 @@ class PostController extends BaseController
     }
 
     /**
-     * Show a thread
+     * Edit a post
      *
-     * @param  integer $thread_id
+     * @param  Cms\Modules\Forum\Models\Post $post
      * @param  Cms\Modules\Forum\Services\PostService $postService
      *
      * @return View
@@ -33,11 +33,11 @@ class PostController extends BaseController
         $update = $post->hydrateFromInput($input->except(['_token']));
         if ($update->save() === false) {
             return redirect()->back()
-                ->withError('Post could not be updated, please try again.');
+                ->withError(trans('forum::common.messages.post_not_updated'));
         }
 
         return redirect(array_get($post->transform(), 'links.self'))
-            ->withInfo('Post updated successfully.');
+            ->withInfo(trans('forum::common.messages.post_updated'));
     }
 
 }

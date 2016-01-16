@@ -10,7 +10,9 @@
                 <h4>{!! array_get($user, 'links.html') !!}</h4>
             </div>
             <div class="row">
-                <p>Post Count: {{ array_get($user, 'post_count') }}</p>
+                <p>{{ trans('forum::common.titles.post_count', [
+                    'post_count' => array_get($user, 'post_count')
+                ]) }}</p>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -18,5 +20,5 @@
     @endforeach
 </div>
 @else
-    <div class="alert alert-info">No Categories Found</div>
+    <div class="alert alert-info">{{ trans('forum::common.messages.no_users') }}</div>
 @endif

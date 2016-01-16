@@ -1,7 +1,7 @@
 @if (isset($forum_categories))
 <div class="list-group">
     <a href="{{ route('pxcms.forum.index') }}" class="list-group-item">
-        All
+        {{ trans('forum::common.titles.all_threads') }}
     </a>
 
     @foreach($forum_categories as $category)
@@ -13,5 +13,5 @@
 </div>
 
 @else
-    <div class="alert alert-info">No Categories Found</div>
+    <div class="alert alert-info">{{ trans('forum::common.messages.no_categories') }}</div>
 @endif

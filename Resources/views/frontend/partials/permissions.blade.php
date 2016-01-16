@@ -4,11 +4,11 @@
         <div class="panel panel-default">
             <table class="table table-bordered panel-body">
                 <thead>
-                    <th>Permission</th>
-                    <th>Can</th>
+                    <th>{{ trans('forum::common.titles.permission') }}</th>
+                    <th>{{ trans('forum::common.titles.can') }}</th>
                 </thead>
                 <tbody>
-                    @set($perms, ['Create' => 'post', 'Read' => 'read', 'Reply' => 'reply', 'Delete' => 'delete', 'Moderate' => 'mod'])
+                    @set($perms, [trans('forum::common.permissions.create') => 'post', trans('forum::common.permissions.read') => 'read', trans('forum::common.permissions.reply') => 'reply', trans('forum::common.permissions.delete') => 'delete', trans('forum::common.permissions.moderate') => 'mod'])
                     @foreach($perms as $title => $perm)
                     <tr>
                         <td>{{ $title }}</td>

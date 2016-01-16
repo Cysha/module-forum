@@ -14,9 +14,9 @@ class ThreadController extends BaseController
     {
         $this->setSidebar('forum_default');
 
-        $this->theme->breadcrumb()->add('Forum', route('pxcms.forum.index'));
+        $this->theme->breadcrumb()->add(trans('forum::common.forum'), route('pxcms.forum.index'));
         $this->theme->asset()->add('forum_partials', 'modules/forum/css/partials.css', ['theme']);
-        $this->theme->prependTitle('Thread | ');
+        $this->theme->prependTitle(trans('forum::common.thread').' | ');
     }
 
     /**
@@ -34,7 +34,7 @@ class ThreadController extends BaseController
         // make sure page is in bounds
         if ($input->get('page') > array_get($data, 'thread.pagination.last_page')) {
             return redirect(array_get($data, 'thread.links.last_post'))
-                ->withInfo('Phew! You seemed to stray there, so we moved you back to the last post!');
+                ->withInfo(trans('forum::common.messages.last_page'));
         }
 
         return $this->setView('frontend.pages.thread.index', $data);
@@ -72,14 +72,14 @@ class ThreadController extends BaseController
         $post = $threadService->update($input);
         if ($post === false) {
             return redirect()->back()
-                ->withError('Thread could not be created, please try again.');
+                ->withError(trans('forum::common.messages.reply_not_created'));
         }
 
         // grab it again just to get teh updated info
         $thread = $threadService->getById($thread_id);
 
         return redirect(array_get($thread, 'thread.links.last_post'))
-            ->withInfo('Replied successfully.');
+            ->withInfo(trans('forum::common.messages.reply_created'));
     }
 
 

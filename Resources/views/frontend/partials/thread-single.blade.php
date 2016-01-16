@@ -13,13 +13,16 @@
             @if (array_get($thread, 'post_count')-1 <= 0)
             <span>Posted {!! array_get($thread, 'created.element') !!} by {!! array_get($thread, 'author.links.html') !!}</span>
             @else
-            <span>Last Updated {!! array_get($thread, 'latestPost.updated.element') !!} by {!! array_get($thread, 'latestPost.author.links.html') !!}</span>
+            <span>{!! trans('forum::common.messages.last_updated', [
+                'at' => array_get($thread, 'latestPost.updated.element'),
+                'author' => array_get($thread, 'latestPost.author.links.html'),
+            ]) !!}</span>
             @endif
         </div>
     </div>
     <div class="replies text-center">
         <div class="row"><h4><a href="{{ array_get($thread, 'links.last_post') }}">{{ array_get($thread, 'post_count')-1 }}</a></h4></div>
-        <div class="row">Replies</div>
+        <div class="row">{{ trans('forum::common.titles.replies') }}</div>
     </div>
     <div class="clearfix"></div>
 </div>

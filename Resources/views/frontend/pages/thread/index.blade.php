@@ -4,7 +4,7 @@
             {{{ array_get($thread, 'name') }}}
             @if (Auth::check() && Lock::can('reply', 'forum_frontend', array_get($thread, 'category.id')))
                 <a href="{{ array_get($thread, 'links.reply') }}" class="btn-labeled btn btn-success pull-right">
-                    <span class="btn-label"><i class="fa fa-comments fa-fw"></i></span> Reply
+                    <span class="btn-label"><i class="fa fa-comments fa-fw"></i></span> {{ trans('forum::common.titles.reply') }}
                 </a>
 
             @endif
