@@ -9,7 +9,7 @@
         <div class="panel-body">
             {!! Former::text('name') !!}
 
-            {!! Former::text('slug') !!}
+            {!! Former::text('slug')->data_toggle('slugify')->data_target('input[name=\'name\']') !!}
 
             {!! Former::color('color') !!}
         </div>
