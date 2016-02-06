@@ -4,7 +4,7 @@ return [
 
     'backend_sidebar' => [
         'Forum' => [
-            'order' => 4,
+            'order' => 101,
             'children' => [
                 [
                     'route' => 'backend.forum.category.manager',
