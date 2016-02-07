@@ -38,7 +38,8 @@ class CategoryManager
                 'source' => 'backend.forum.category.manager',
                 'collection' => function () {
                     $model = 'Cms\Modules\Forum\Models\Category';
-                    return $model::with('threads')->orderBy('order', 'asc')->get();
+                    return $model::with('threadCount')
+                        ->get();
                 },
             ],
 
@@ -64,7 +65,7 @@ class CategoryManager
                     'width' => '15%',
                 ],
 
-                'Color' => [
+                'color' => [
                     'th' => 'Color',
                     'tr' => function ($model) {
                         return sprintf('<span style="color: %2$s;">%1$s</span>', $model->color, $model->color);
