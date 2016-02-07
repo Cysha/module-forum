@@ -1,7 +1,3 @@
-@extends(partial('auth::admin.user._layout'))
-
-@section('user-form')
-
 @if(empty($keys))
 
     <div class="alert alert-info">
@@ -130,4 +126,3 @@
 })(jQuery);
 </script>
 @endif
-@stop

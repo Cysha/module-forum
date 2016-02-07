@@ -6,7 +6,7 @@ $router->group(['prefix' => 'forum'], function (Router $router) {
 
     $router->group(['prefix' => 'categories'], function (Router $router) {
 
-        $router->group(['prefix' => 'create'], function (Router $router) {
+        $router->group(['prefix' => 'create', 'middleware' => 'hasPermission', 'hasPermission' => 'create@forum_backend'], function (Router $router) {
             $router->post('/', ['uses' => 'CreateController@postForm']);
             $router->get('/', ['as' => 'backend.forum.category.create', 'uses' => 'CreateController@getForm']);
         });
@@ -22,7 +22,6 @@ $router->group(['prefix' => 'forum'], function (Router $router) {
 
         });
 
-        $router->post('/', ['uses' => 'CategoryManagerController@categoryManager']);
         $router->get('/', ['as' => 'backend.forum.category.manager', 'uses' => 'CategoryManagerController@categoryManager']);
 
     });

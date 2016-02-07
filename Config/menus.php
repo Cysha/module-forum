@@ -12,7 +12,7 @@ return [
                     'icon' => 'fa-comments-o',
                     'order' => 1,
                     'permission' => 'create@forum_backend',
-                    'activePattern' => '\/forum\/categories\/*',
+                    'activePattern' => '\/{backend}\/forum\/categories\/*',
                 ],
                 [
                     'route' => 'backend.forum.permissions.manager',
@@ -20,6 +20,7 @@ return [
                     'icon' => 'fa-lock',
                     'order' => 2,
                     'permission' => 'create@forum_backend',
+                    'activePattern' => '\/{backend}\/forum\/permissions\/*',
                 ],
             ],
         ],
