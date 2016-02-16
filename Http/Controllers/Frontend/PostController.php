@@ -7,13 +7,6 @@ use Cms\Modules\Forum\Services\PostService;
 
 class PostController extends BaseController
 {
-    public $layout = '2-column-left';
-
-    public function boot()
-    {
-        $this->setSidebar('forum_default');
-    }
-
     /**
      * Edit a post
      *

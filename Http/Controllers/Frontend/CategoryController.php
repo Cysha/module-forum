@@ -10,17 +10,6 @@ use Illuminate\Http\Request;
 
 class CategoryController extends BaseController
 {
-    public $layout = '2-column-left';
-
-    public function boot()
-    {
-        $this->setSidebar('forum_default');
-
-        $this->theme->breadcrumb()->add(trans('forum::common.forum'), route('pxcms.forum.index'));
-        $this->theme->asset()->add('forum_partials', 'modules/forum/css/partials.css', ['theme']);
-        $this->theme->prependTitle(trans('forum::common.forum').' | ');
-    }
-
     public function getAll(ThreadService $threadService, Request $input)
     {
         $data = $threadService->getAll();
