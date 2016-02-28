@@ -1,5 +1,5 @@
 {
-    "name": "cysha/pxcms-forum",
+    "name": "cysha/module-forum",
     "type": "pxcms-module",
     "description": "Forum Module for PhoenixCMS",
     "license": "MIT",
