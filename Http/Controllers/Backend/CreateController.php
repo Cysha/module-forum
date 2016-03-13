@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Http\Controllers\Backend;
+<?php
+
+namespace Cms\Modules\Forum\Http\Controllers\Backend;
 
 use Cms\Modules\Forum\Services\CategoryService;
 use Cms\Modules\Forum\Models\Category;
@@ -6,7 +8,6 @@ use Illuminate\Http\Request;
 
 class CreateController extends BaseController
 {
-
     public function getForm()
     {
         $this->theme->setTitle('Create Category');
@@ -14,7 +15,7 @@ class CreateController extends BaseController
         $this->formAssets();
 
         return $this->setView('backend.category.basic', [
-            'category' => with(new Category),
+            'category' => with(new Category()),
         ]);
     }
 
@@ -33,5 +34,4 @@ class CreateController extends BaseController
             ->route('backend.forum.category.update', $category->id)
             ->withInfo('Category Created!');
     }
-
 }

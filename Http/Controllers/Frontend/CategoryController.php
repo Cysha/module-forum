@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Http\Controllers\Frontend;
+<?php
+
+namespace Cms\Modules\Forum\Http\Controllers\Frontend;
 
 use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
 use Cms\Modules\Forum\Http\Requests\ThreadCreateRequest;

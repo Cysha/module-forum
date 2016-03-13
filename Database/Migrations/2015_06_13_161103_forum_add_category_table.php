@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class ForumAddCategoryTable extends Migration
 {
-
     public function __construct()
     {
         // Get the prefix
@@ -13,8 +12,6 @@ class ForumAddCategoryTable extends Migration
 
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -33,8 +30,6 @@ class ForumAddCategoryTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

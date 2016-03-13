@@ -1,6 +1,7 @@
 <?php
 
-$serializer = new SuperClosure\Serializer;
+$serializer = new SuperClosure\Serializer();
+
 return [
     'Auth' => [
         'User' => [

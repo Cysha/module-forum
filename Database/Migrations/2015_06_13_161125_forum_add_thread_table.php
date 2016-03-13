@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class ForumAddThreadTable extends Migration
 {
-
     public function __construct()
     {
         // Get the prefix
@@ -13,8 +12,6 @@ class ForumAddThreadTable extends Migration
 
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -37,8 +34,6 @@ class ForumAddThreadTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

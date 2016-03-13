@@ -1,32 +1,32 @@
-<?php namespace Cms\Modules\Forum\Datatables;
+<?php
 
-use Lock;
+namespace Cms\Modules\Forum\Datatables;
 
 class CategoryManager
 {
     public function boot()
     {
         return [
-            /**
+            /*
              * Page Decoration Values
              */
             'page' => [
                 'title' => 'Forum Manager',
                 'alert' => [
                     'class' => 'info',
-                    'text'  => '<i class="fa fa-info-circle"></i> You can manage your forum categories from here.'
+                    'text' => '<i class="fa fa-info-circle"></i> You can manage your forum categories from here.',
                 ],
                 'header' => [
                     [
                         'btn-text' => 'Create Category',
                         'btn-route' => 'backend.forum.category.create',
                         'btn-class' => 'btn btn-info btn-labeled',
-                        'btn-icon' => 'fa fa-plus'
+                        'btn-icon' => 'fa fa-plus',
                     ],
                 ],
             ],
 
-            /**
+            /*
              * Set up some table options, these will be passed back to the view
              */
             'options' => [
@@ -38,12 +38,13 @@ class CategoryManager
                 'source' => 'backend.forum.category.manager',
                 'collection' => function () {
                     $model = 'Cms\Modules\Forum\Models\Category';
+
                     return $model::with('threadCount')
                         ->get();
                 },
             ],
 
-            /**
+            /*
              * Lists the tables columns
              */
             'columns' => [
@@ -87,19 +88,19 @@ class CategoryManager
                         $return = [
                             [
                                 'btn-title' => 'Edit Category',
-                                'btn-link'  => route('backend.forum.category.update', $model->id),
+                                'btn-link' => route('backend.forum.category.update', $model->id),
                                 'btn-class' => 'btn btn-warning btn-xs btn-labeled',
-                                'btn-icon'  => 'fa fa-pencil',
+                                'btn-icon' => 'fa fa-pencil',
                                 'hasPermission' => 'update@forum_backend',
-                            ]
+                            ],
                         ];
 
                         if ($model->order > 1) {
                             $return[] = [
                                 'btn-title' => 'Move Up',
-                                'btn-link'  => route('backend.forum.category.move-up', $model->id),
+                                'btn-link' => route('backend.forum.category.move-up', $model->id),
                                 'btn-class' => 'btn btn-default btn-xs btn-labeled',
-                                'btn-icon'  => 'fa fa-arrow-up',
+                                'btn-icon' => 'fa fa-arrow-up',
                                 'btn-method' => 'post',
                                 'btn-extras' => 'data-remote="true" data-disable-with="<i class=\'fa fa-refresh fa-spin\'></i>"',
                                 'hasPermission' => 'update@forum_backend',
@@ -108,9 +109,9 @@ class CategoryManager
 
                         $return[] = [
                             'btn-title' => 'Move Down',
-                            'btn-link'  => route('backend.forum.category.move-down', $model->id),
+                            'btn-link' => route('backend.forum.category.move-down', $model->id),
                             'btn-class' => 'btn btn-default btn-xs btn-labeled',
-                            'btn-icon'  => 'fa fa-arrow-down',
+                            'btn-icon' => 'fa fa-arrow-down',
                             'btn-method' => 'post',
                             'btn-extras' => 'data-remote="true" data-disable-with="<i class=\'fa fa-refresh fa-spin\'></i>"',
                             'hasPermission' => 'update@forum_backend',
@@ -119,8 +120,7 @@ class CategoryManager
                         return $return;
                     },
                 ],
-            ]
+            ],
         ];
-
     }
 }

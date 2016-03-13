@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Services;
+<?php
+
+namespace Cms\Modules\Forum\Services;
 
 use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
 use Cms\Modules\Forum\Models\Category;
@@ -35,19 +37,18 @@ class PostService
 
         // if they cant read the category we dont want em here atall
         // test for read perms
-        if (Lock::cannot('read', 'forum_frontend', $category_id)){
+        if (Lock::cannot('read', 'forum_frontend', $category_id)) {
             return abort(404);
         }
 
         $canEdit = false;
         // test for mod perms for this category
-        if (Lock::can('mod', 'forum_frontend', $category_id)){
+        if (Lock::can('mod', 'forum_frontend', $category_id)) {
             $canEdit = true;
 
         // if they dont have mod perms test for user rights
-        } else if (Lock::can('update', 'forum_frontend', $category_id)
-                && $post->author->id == Auth::id()){
-
+        } elseif (Lock::can('update', 'forum_frontend', $category_id)
+                && $post->author->id == Auth::id()) {
             $canEdit = true;
         }
 
@@ -56,7 +57,6 @@ class PostService
                 ->back()
                 ->withError('Error: You do not posess the necessary permissions to edit this post.');
         }
-
 
         $data['post'] = $post->transform();
         $data['thread'] = $post->thread->transform();

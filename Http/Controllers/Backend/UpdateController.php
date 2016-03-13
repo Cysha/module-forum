@@ -1,11 +1,12 @@
-<?php namespace Cms\Modules\Forum\Http\Controllers\Backend;
+<?php
+
+namespace Cms\Modules\Forum\Http\Controllers\Backend;
 
 use Cms\Modules\Forum\Models\Category;
 use Illuminate\Http\Request;
 
 class UpdateController extends BaseController
 {
-
     public function getForm(Category $category)
     {
         $this->getDetails($category);
@@ -31,7 +32,7 @@ class UpdateController extends BaseController
 
     public function postDown(Category $category, Request $input)
     {
-        $category->order++;
+        ++$category->order;
 
         if ($category->save() === false) {
             return $this->sendMessage($category->getErrors(), 500);
@@ -45,7 +46,7 @@ class UpdateController extends BaseController
         if (($category->order - 1) <= 0) {
             $category->order = 1;
         } else {
-            $category->order--;
+            --$category->order;
         }
 
         if ($category->save() === false) {

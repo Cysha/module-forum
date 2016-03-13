@@ -1,12 +1,12 @@
-<?php namespace Cms\Modules\Forum\Models;
+<?php
 
-use Illuminate\Contracts\Pagination\Paginator;
+namespace Cms\Modules\Forum\Models;
+
 use Illuminate\Support\Facades\Request;
 use League\CommonMark\CommonMarkConverter;
 
 class Post extends BaseModel
 {
-
     protected $table = 'posts';
     protected $fillable = ['thread_id', 'author_id', 'body'];
     protected $appends = ['post_url'];
@@ -27,7 +27,7 @@ class Post extends BaseModel
 
     public function getBodyAttribute($value)
     {
-        return escape(with(new CommonMarkConverter)->convertToHtml($value));
+        return escape(with(new CommonMarkConverter())->convertToHtml($value));
     }
 
     public function getPostUrlAttribute()
@@ -40,7 +40,7 @@ class Post extends BaseModel
         return sprintf('%s?page=%d#post-%s',
             route('forum.thread.show', [
                 'forum_thread_id' => $this->thread_id,
-                'forum_thread_name' => $threadName
+                'forum_thread_name' => $threadName,
             ]),
             Request::input('page', 1),
             $this->id

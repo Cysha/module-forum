@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Services;
+<?php
+
+namespace Cms\Modules\Forum\Services;
 
 use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
 use Cms\Modules\Forum\Repositories\Category\RepositoryInterface as CategoryRepo;
@@ -42,7 +44,6 @@ class CategoryService
         // attach em to the admin group, will sort the rest of the perms out manually
         $role = Role::find(config('cms.auth.config.roles.admin_group'));
         foreach ($permissions as $permission => $description) {
-
             app('BeatSwitch\Lock\Manager')
                 ->role($role->name)
                 ->allow($permission, 'forum_frontend', $category->id);

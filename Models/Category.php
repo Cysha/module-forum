@@ -1,11 +1,12 @@
-<?php namespace Cms\Modules\Forum\Models;
+<?php
+
+namespace Cms\Modules\Forum\Models;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class Category extends BaseModel
 {
-
     protected $table = 'categories';
     protected $fillable = ['name', 'slug', 'order', 'color'];
     protected $appends = ['threadCount', 'label', 'pagination'];
@@ -18,7 +19,7 @@ class Category extends BaseModel
         'route' => 'forum.category.show',
         'attributes' => [
             'forum_category_id' => 'id',
-            'forum_category_name' => 'slug'
+            'forum_category_name' => 'slug',
         ],
     ];
 
@@ -82,9 +83,9 @@ class Category extends BaseModel
                 'self' => (string) $self,
                 'create' => (string) route('forum.thread.create', [
                     'forum_frontend_id' => $this->id,
-                    'forum_frontend_name' => $this->slug
+                    'forum_frontend_name' => $this->slug,
                 ]),
-                'last_page' => (string) $self . $lastPage,
+                'last_page' => (string) $self.$lastPage,
             ],
         ];
 

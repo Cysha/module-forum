@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Composers;
+<?php
+
+namespace Cms\Modules\Forum\Composers;
 
 use Cms\Modules\Forum\Repositories\Thread\RepositoryInterface as ThreadRepo;
 use Cms\Modules\Forum\Repositories\Post\RepositoryInterface as PostRepo;
@@ -31,5 +33,4 @@ class Widgets
         $count = $this->posts->all()->count();
         $view->with('counter', $count);
     }
-
 }

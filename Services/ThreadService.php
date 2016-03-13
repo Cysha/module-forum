@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Services;
+<?php
+
+namespace Cms\Modules\Forum\Services;
 
 use Cms\Modules\Forum\Repositories\Category\RepositoryInterface as CategoryRepo;
 use Cms\Modules\Forum\Repositories\Thread\RepositoryInterface as ThreadRepo;
@@ -16,7 +18,7 @@ class ThreadService
     }
 
     /**
-     * Get all threads, apart from those the user doesn't have permission for
+     * Get all threads, apart from those the user doesn't have permission for.
      *
      * @return array
      */
@@ -72,7 +74,7 @@ class ThreadService
         $data = [];
 
         $thread = $this->thread->getById($id);
-        if (Lock::cannot('read', 'forum_frontend', $thread->category->id)){
+        if (Lock::cannot('read', 'forum_frontend', $thread->category->id)) {
             return abort(404);
         }
 

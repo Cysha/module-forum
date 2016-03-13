@@ -27,7 +27,7 @@ return [
         'read' => 'Read',
         'reply' => 'Reply',
         'delete' => 'Delete',
-        'moderate' => 'Moderate'
+        'moderate' => 'Moderate',
     ],
 
     'messages' => [

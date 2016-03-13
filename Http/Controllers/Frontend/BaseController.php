@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Http\Controllers\Frontend;
+<?php
+
+namespace Cms\Modules\Forum\Http\Controllers\Frontend;
 
 use Cms\Modules\Core\Http\Controllers\BaseFrontendController;
 
@@ -6,7 +8,8 @@ class BaseController extends BaseFrontendController
 {
     public $layout = '2-column-left';
 
-    public function boot() {
+    public function boot()
+    {
         $this->setSidebar('forum_default');
         $this->theme->asset()->add('forum_partials', 'modules/forum/css/partials.css', ['theme']);
 
@@ -15,5 +18,4 @@ class BaseController extends BaseFrontendController
 
         parent::boot();
     }
-
 }

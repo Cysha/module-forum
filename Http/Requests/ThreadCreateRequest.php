@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Http\Requests;
+<?php
+
+namespace Cms\Modules\Forum\Http\Requests;
 
 use Cms\Http\Requests\Request;
 
@@ -22,6 +24,7 @@ class ThreadCreateRequest extends Request
     public function rules()
     {
         $prefix = config('cms.forum.config.table-prefix', 'forum_');
+
         return [
             'name' => 'required|unique:'.$prefix.'threads,name',
             'body' => 'required',

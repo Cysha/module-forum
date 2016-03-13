@@ -1,8 +1,8 @@
-<?php namespace Cms\Modules\Forum\Repositories\Post;
+<?php
 
-use Cms\Modules\Forum\Repositories\Post\RepositoryInterface;
+namespace Cms\Modules\Forum\Repositories\Post;
+
 use Cms\Modules\Core\Repositories\BaseEloquentRepository;
-use Illuminate\Database\Eloquent\Collection;
 
 class EloquentRepository extends BaseEloquentRepository implements RepositoryInterface
 {

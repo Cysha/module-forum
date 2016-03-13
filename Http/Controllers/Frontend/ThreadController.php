@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Http\Controllers\Frontend;
+<?php
+
+namespace Cms\Modules\Forum\Http\Controllers\Frontend;
 
 use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
 use Cms\Modules\Forum\Http\Requests\ThreadReplyRequest;
@@ -9,10 +11,10 @@ use Illuminate\Http\Request;
 class ThreadController extends BaseController
 {
     /**
-     * Show a thread
+     * Show a thread.
      *
-     * @param  integer $thread_id
-     * @param  Cms\Modules\Forum\Services\ThreadService $threadService
+     * @param int                                      $thread_id
+     * @param Cms\Modules\Forum\Services\ThreadService $threadService
      *
      * @return View
      */
@@ -30,16 +32,15 @@ class ThreadController extends BaseController
     }
 
     /**
-     * Reply to a thread
+     * Reply to a thread.
      *
-     * @param  integer $thread_id
-     * @param  Cms\Modules\Forum\Services\ThreadService $threadService
+     * @param int                                      $thread_id
+     * @param Cms\Modules\Forum\Services\ThreadService $threadService
      *
      * @return View
      */
     public function update($thread_id, ThreadService $threadService, Request $input, ThreadReplyRequest $request)
     {
-
         $input = $input->except(['_token']);
         $input['author_id'] = \Auth::id();
         $input['thread_id'] = $thread_id;
@@ -70,6 +71,4 @@ class ThreadController extends BaseController
         return redirect(array_get($thread, 'thread.links.last_post'))
             ->withInfo(trans('forum::common.messages.reply_created'));
     }
-
-
 }

@@ -26,7 +26,6 @@ $router->group(['prefix' => 'forum'], function (Router $router) {
 
     });
 
-
     $router->group(['prefix' => 'post'], function (Router $router) {
 
         $router->group(['prefix' => '{forum_post_id}'], function (Router $router) {

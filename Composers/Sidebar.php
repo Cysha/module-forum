@@ -1,11 +1,12 @@
-<?php namespace Cms\Modules\Forum\Composers;
+<?php
+
+namespace Cms\Modules\Forum\Composers;
 
 use Cms\Modules\Forum\Services\CategoryService;
 use Cms\Modules\Auth\Repositories\User\RepositoryInterface as UserRepo;
 
 class Sidebar
 {
-
     protected $category;
     protected $user;
 
@@ -23,6 +24,7 @@ class Sidebar
 
         if ($categories === false || !count($categories)) {
             $view->with('forum_categories', []);
+
             return;
         }
 
@@ -36,6 +38,7 @@ class Sidebar
 
             if ($users === false || !count($users)) {
                 $view->with('forum_posters', []);
+
                 return;
             }
 
@@ -47,7 +50,7 @@ class Sidebar
                 $userList[] = $tx;
             }
             usort($userList, function ($a, $b) {
-                return array_get($a, 'post_count', 1)<array_get($b, 'post_count', 1);
+                return array_get($a, 'post_count', 1) < array_get($b, 'post_count', 1);
             });
 
             return $userList;

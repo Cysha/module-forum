@@ -1,10 +1,11 @@
-<?php namespace Cms\Modules\Forum\Providers;
+<?php
+
+namespace Cms\Modules\Forum\Providers;
 
 use Cms\Modules\Core\Providers\BaseModuleProvider;
 
 class ForumModuleServiceProvider extends BaseModuleProvider
 {
-
     /**
      * Register the defined middleware.
      *
@@ -26,7 +27,7 @@ class ForumModuleServiceProvider extends BaseModuleProvider
     ];
 
     /**
-     * Register view composers
+     * Register view composers.
      *
      * @var array
      */
@@ -38,7 +39,7 @@ class ForumModuleServiceProvider extends BaseModuleProvider
     ];
 
     /**
-     * Register repository bindings to the IoC
+     * Register repository bindings to the IoC.
      *
      * @var array
      */
@@ -49,12 +50,10 @@ class ForumModuleServiceProvider extends BaseModuleProvider
     ];
 
     /**
-     * Register Auth related stuffs
+     * Register Auth related stuffs.
      */
     public function register()
     {
         parent::register();
-
     }
-
 }

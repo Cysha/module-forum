@@ -6,7 +6,7 @@ return [
         'forum_frontend',
     ],
 
-    /**
+    /*
      * These will be loaded on /{backend}/config/cache
      */
     'cache_keys' => [

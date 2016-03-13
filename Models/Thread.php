@@ -1,11 +1,12 @@
-<?php namespace Cms\Modules\Forum\Models;
+<?php
+
+namespace Cms\Modules\Forum\Models;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class Thread extends BaseModel
 {
-
     protected $table = 'threads';
     protected $fillable = ['category_id', 'author_id', 'name', 'locked', 'views'];
     protected $appends = ['postCount', 'pagination'];
@@ -16,7 +17,7 @@ class Thread extends BaseModel
         'route' => 'forum.thread.show',
         'attributes' => [
             'forum_thread_id' => 'id',
-            'forum_thread_name' => 'slug'
+            'forum_thread_name' => 'slug',
         ],
     ];
 

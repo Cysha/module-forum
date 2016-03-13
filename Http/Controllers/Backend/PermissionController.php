@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Http\Controllers\Backend;
+<?php
+
+namespace Cms\Modules\Forum\Http\Controllers\Backend;
 
 use BeatSwitch\Lock\Manager;
 use Cms\Modules\Auth\Models\Permission;
@@ -10,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class PermissionController extends BaseController
 {
-
     public function getForm(CategoryRepo $category, RoleRepo $role)
     {
         $this->theme->setTitle('Category Permission Manager');
@@ -36,7 +37,6 @@ class PermissionController extends BaseController
 
     public function postForm(RoleRepo $roles, Request $input, Manager $lockManager)
     {
-
         $roles = $roles->all();
 
         if (!count($input->get('permissions'))) {
@@ -44,8 +44,8 @@ class PermissionController extends BaseController
         }
 
         foreach ($input->get('permissions') as $role_id => $permissions) {
-            $role = $roles->filter(function($row) use($role_id) {
-                return ($row->id === $role_id);
+            $role = $roles->filter(function ($row) use ($role_id) {
+                return $row->id === $role_id;
             })->first();
 
             // if role doesnt exist
@@ -70,7 +70,7 @@ class PermissionController extends BaseController
                     break;
 
                     case 'inherit':
-                        $perm = with(new Permission)
+                        $perm = with(new Permission())
                             ->whereAction($permission)
                             ->whereResourceType($resource)
                             ->whereResourceId($resource_id)
@@ -88,9 +88,8 @@ class PermissionController extends BaseController
         }
 
         artisan_call('cache:clear');
+
         return redirect()->back()
             ->withInfo('Permissions Processed.');
     }
-
-
 }

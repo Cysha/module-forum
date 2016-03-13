@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Http\Controllers\Backend;
+<?php
+
+namespace Cms\Modules\Forum\Http\Controllers\Backend;
 
 use Cms\Modules\Admin\Traits\DataTableTrait;
 use Cms\Modules\Forum\Datatables\CategoryManager;
@@ -11,7 +13,6 @@ class CategoryManagerController extends BaseController
     {
         $this->theme->breadcrumb()->add('Category Manager', route('backend.forum.category.manager'));
 
-        return $this->renderDataTable(with(new CategoryManager)->boot());
+        return $this->renderDataTable(with(new CategoryManager())->boot());
     }
-
 }

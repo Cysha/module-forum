@@ -1,6 +1,7 @@
-<?php namespace Cms\Modules\Forum\Http\Controllers\Frontend;
+<?php
 
-use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
+namespace Cms\Modules\Forum\Http\Controllers\Frontend;
+
 use Cms\Modules\Forum\Http\Requests\PostEditRequest;
 use Cms\Modules\Forum\Models\Post;
 use Cms\Modules\Forum\Services\PostService;
@@ -8,10 +9,10 @@ use Cms\Modules\Forum\Services\PostService;
 class PostController extends BaseController
 {
     /**
-     * Edit a post
+     * Edit a post.
      *
-     * @param  Cms\Modules\Forum\Models\Post $post
-     * @param  Cms\Modules\Forum\Services\PostService $postService
+     * @param Cms\Modules\Forum\Models\Post          $post
+     * @param Cms\Modules\Forum\Services\PostService $postService
      *
      * @return View
      */
@@ -22,7 +23,8 @@ class PostController extends BaseController
         return $this->setView('frontend.pages.post.edit', $data);
     }
 
-    public function postForm(Post $post, PostEditRequest $input) {
+    public function postForm(Post $post, PostEditRequest $input)
+    {
         $update = $post->hydrateFromInput($input->except(['_token']));
         if ($update->save() === false) {
             return redirect()->back()
@@ -32,5 +34,4 @@ class PostController extends BaseController
         return redirect(array_get($post->transform(), 'links.self'))
             ->withInfo(trans('forum::common.messages.post_updated'));
     }
-
 }

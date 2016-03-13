@@ -1,6 +1,7 @@
-<?php namespace Cms\Modules\Forum\Repositories\Post;
+<?php
+
+namespace Cms\Modules\Forum\Repositories\Post;
 
 interface RepositoryInterface
 {
-
 }

@@ -1,8 +1,8 @@
-<?php namespace Cms\Modules\Forum\Repositories\Category;
+<?php
 
-use Cms\Modules\Forum\Repositories\Category\RepositoryInterface;
+namespace Cms\Modules\Forum\Repositories\Category;
+
 use Cms\Modules\Core\Repositories\BaseEloquentRepository;
-use Illuminate\Database\Eloquent\Collection;
 
 class EloquentRepository extends BaseEloquentRepository implements RepositoryInterface
 {

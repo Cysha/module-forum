@@ -1,13 +1,13 @@
-<?php namespace Cms\Modules\Forum\Http\Controllers\Backend;
+<?php
+
+namespace Cms\Modules\Forum\Http\Controllers\Backend;
 
 use Cms\Modules\Core\Http\Controllers\BaseBackendController;
 use Cms\Modules\Forum\Models\Category;
 use Former;
-use Cms\Modules\Forum\Http\Controllers\Backend\BaseController;
 
 class BaseController extends BaseBackendController
 {
-
     public function boot()
     {
         parent::boot();
@@ -30,5 +30,4 @@ class BaseController extends BaseBackendController
 
         return compact('category');
     }
-
 }

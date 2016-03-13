@@ -32,5 +32,4 @@ $router->group(['prefix' => 'forum'], function (Router $router) {
 
     });
 
-
 });

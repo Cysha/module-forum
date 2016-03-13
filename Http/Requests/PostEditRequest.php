@@ -1,4 +1,6 @@
-<?php namespace Cms\Modules\Forum\Http\Requests;
+<?php
+
+namespace Cms\Modules\Forum\Http\Requests;
 
 use Cms\Http\Requests\Request;
 
