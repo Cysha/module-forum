@@ -5,7 +5,6 @@ namespace Cms\Modules\Forum\Services;
 use Cms\Modules\Forum\Repositories\Category\RepositoryInterface as CategoryRepo;
 use Cms\Modules\Forum\Repositories\Thread\RepositoryInterface as ThreadRepo;
 use Cms\Modules\Forum\Repositories\Post\RepositoryInterface as PostRepo;
-use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
 use Cms\Modules\Forum\Models\Category;
 
 class ThreadService
@@ -29,7 +28,7 @@ class ThreadService
 
         // grab the categories we have permissions to read
         $categories = $this->category->all()->filter(function ($model) {
-            return Lock::can('read', 'forum_frontend', $model->id);
+            return hasPermission('read', 'forum_frontend', $model->id);
         });
 
         // turn them into an array of ids
@@ -52,7 +51,7 @@ class ThreadService
 
     public function getByCategory(Category $category)
     {
-        if (Lock::cannot('read', 'forum_frontend', $category->id)) {
+        if (!hasPermission('read', 'forum_frontend', $category->id)) {
             return abort(404);
         }
 
@@ -74,7 +73,7 @@ class ThreadService
         $data = [];
 
         $thread = $this->thread->getById($id);
-        if (Lock::cannot('read', 'forum_frontend', $thread->category->id)) {
+        if (!hasPermission('read', 'forum_frontend', $thread->category->id)) {
             return abort(404);
         }
 

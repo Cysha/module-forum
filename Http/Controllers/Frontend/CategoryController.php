@@ -2,7 +2,6 @@
 
 namespace Cms\Modules\Forum\Http\Controllers\Frontend;
 
-use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
 use Cms\Modules\Forum\Http\Requests\ThreadCreateRequest;
 use Cms\Modules\Forum\Models\Category;
 use Cms\Modules\Forum\Services\CategoryService;
@@ -28,7 +27,7 @@ class CategoryController extends BaseController
     public function show(Category $category, ThreadService $threadService, Request $input)
     {
         // make sure we have permission to be here
-        if (Lock::cannot('read', 'forum_frontend', $category->id)) {
+        if (!hasPermission('read', 'forum_frontend', $category->id)) {
             return abort(404);
         }
 
@@ -52,7 +51,7 @@ class CategoryController extends BaseController
         $this->setTitle('Create Thread');
 
         // make sure we have permission to be here
-        if (Lock::cannot('post', 'forum_frontend', $category->id)) {
+        if (!hasPermission('post', 'forum_frontend', $category->id)) {
             return redirect(array_get($category->transform(), 'links.self'))
                 ->withError(trans('auth::auth.permissions.unauthorized', [
                     'permission' => 'user.create',
@@ -73,7 +72,7 @@ class CategoryController extends BaseController
         $input['category_id'] = $category->id;
 
         // make sure we have permission to be here
-        if (Lock::cannot('post', 'forum_frontend', $category->id)) {
+        if (!hasPermission('post', 'forum_frontend', $category->id)) {
             return redirect(array_get($category->transform(), 'links.self'))
                 ->withError(trans('auth::auth.permissions.unauthorized', [
                     'permission' => 'user.create',

@@ -2,7 +2,6 @@
 
 namespace Cms\Modules\Forum\Services;
 
-use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
 use Cms\Modules\Forum\Repositories\Category\RepositoryInterface as CategoryRepo;
 use Cms\Modules\Forum\Models\Category;
 use Cms\Modules\Auth\Models\Role;
@@ -57,7 +56,7 @@ class CategoryService
         $data = [];
 
         $data['categories'] = $this->getAllCategories()->filter(function ($model) {
-            return Lock::can('post', 'forum_frontend', $model->id);
+            return hasPermission('post', 'forum_frontend', $model->id);
         });
 
         $data['category'] = $category->transform();
@@ -75,7 +74,7 @@ class CategoryService
         });
 
         return $models->filter(function ($model) {
-            return Lock::can('read', 'forum_frontend', $model->id);
+            return hasPermission('read', 'forum_frontend', $model->id);
         });
     }
 }

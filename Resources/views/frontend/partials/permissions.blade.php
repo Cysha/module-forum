@@ -14,7 +14,7 @@
                         <td>{{ $title }}</td>
                         <td class="text-center">
 
-                            {!! Lock::can($perm, 'forum_frontend', $category['id'])
+                            {!! hasPermission($perm, 'forum_frontend', $category['id'])
                                 ? '<i class="fa fa-check-square-o"></i>'
                                 : '<i class="fa fa-square-o"></i>'
                             !!}

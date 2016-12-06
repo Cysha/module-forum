@@ -1,7 +1,7 @@
 <div class="page-header">
     <h2>
         {{ array_get($category, 'name', trans('forum::common.titles.all_threads')) }}
-        @if (Auth::check() && Lock::can('post', 'forum_frontend', $category['id']))
+        @if (Auth::check() && hasPermission('post', 'forum_frontend', $category['id']))
 
             @if (array_get($category, 'name', null) !== null)
             <a href="{{ array_get($category, 'links.create') }}" class="btn-labeled btn btn-success pull-right">

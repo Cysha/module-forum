@@ -2,7 +2,6 @@
 
 namespace Cms\Modules\Forum\Http\Controllers\Frontend;
 
-use BeatSwitch\Lock\Integrations\Laravel\Facades\Lock;
 use Cms\Modules\Forum\Http\Requests\ThreadReplyRequest;
 use Cms\Modules\Forum\Models\Thread;
 use Cms\Modules\Forum\Services\ThreadService;
@@ -50,7 +49,7 @@ class ThreadController extends BaseController
         $category = array_get($thread, 'thread.category');
 
         // make sure we have permission to be here
-        if (Lock::cannot('reply', 'forum_frontend', (int) array_get($category, 'id'))) {
+        if (!hasPermission('reply', 'forum_frontend', (int) array_get($category, 'id'))) {
             return redirect(array_get($category, 'links.self'))
                 ->withError(trans('auth::auth.permissions.unauthorized', [
                     'permission' => 'user.create',
