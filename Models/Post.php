@@ -27,6 +27,8 @@ class Post extends BaseModel
 
     public function getBodyAttribute($value)
     {
+        $value = replaceMentions($value);
+
         return escape(with(new CommonMarkConverter())->convertToHtml($value));
     }
 

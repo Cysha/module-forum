@@ -33,16 +33,17 @@ class ThreadController extends BaseController
     /**
      * Reply to a thread.
      *
-     * @param int                                      $thread_id
-     * @param Cms\Modules\Forum\Services\ThreadService $threadService
+     * @param int                                                $thread_id
+     * @param Cms\Modules\Forum\Services\ThreadService           $threadService
+     * @param Cms\Modules\Forum\Http\Requests\ThreadReplyRequest $request
      *
      * @return View
      */
-    public function update($thread_id, ThreadService $threadService, Request $input, ThreadReplyRequest $request)
+    public function update($thread_id, ThreadService $threadService, ThreadReplyRequest $request)
     {
-        $input = $input->except(['_token']);
-        $input['author_id'] = \Auth::id();
-        $input['thread_id'] = $thread_id;
+        $request = $request->except(['_token']);
+        $request['author_id'] = \Auth::id();
+        $request['thread_id'] = $thread_id;
 
         $thread = $threadService->getById($thread_id);
 
@@ -58,7 +59,7 @@ class ThreadController extends BaseController
                 ]));
         }
 
-        $post = $threadService->update($input);
+        $post = $threadService->update($request);
         if ($post === false) {
             return redirect()->back()
                 ->withError(trans('forum::common.messages.reply_not_created'));

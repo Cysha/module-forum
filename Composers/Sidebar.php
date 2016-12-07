@@ -42,14 +42,12 @@ class Sidebar
                 return;
             }
 
-            $userList = [];
-            foreach ($users as $user) {
-                $tx = $user->transform();
-                $tx['post_count'] = $user->forumPosts->count();
+            $userList = $users->map(function ($user) {
+                $return = $user->transform();
+                $return['post_count'] = $user->forumPosts->count();
 
-                $userList[] = $tx;
-            }
-            usort($userList, function ($a, $b) {
+                return $return;
+            })->sort(function ($a, $b) {
                 return array_get($a, 'post_count', 1) < array_get($b, 'post_count', 1);
             });
 
