@@ -13,7 +13,7 @@ class BaseController extends BaseBackendController
         parent::boot();
 
         $this->theme->setTitle('Forum');
-        $this->theme->breadcrumb()->add('Forum', route('backend.forum.category.manager'));
+        $this->theme->breadcrumb()->add('Forum', route('admin.forum.category.manager'));
     }
 
     public function formAssets()

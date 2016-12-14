@@ -11,7 +11,7 @@ class CategoryManagerController extends BaseController
 
     public function categoryManager()
     {
-        $this->theme->breadcrumb()->add('Category Manager', route('backend.forum.category.manager'));
+        $this->theme->breadcrumb()->add('Category Manager', route('admin.forum.category.manager'));
 
         return $this->renderDataTable(with(new CategoryManager())->boot());
     }

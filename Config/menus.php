@@ -7,7 +7,7 @@ return [
             'order' => 101,
             'children' => [
                 [
-                    'route' => 'backend.forum.category.manager',
+                    'route' => 'admin.forum.category.manager',
                     'text' => 'Category Manager',
                     'icon' => 'fa-comments-o',
                     'order' => 1,
@@ -15,7 +15,7 @@ return [
                     'activePattern' => '\/{backend}\/forum\/categories\/*',
                 ],
                 [
-                    'route' => 'backend.forum.permissions.manager',
+                    'route' => 'admin.forum.permissions.manager',
                     'text' => 'Permissions Manager',
                     'icon' => 'fa-lock',
                     'order' => 2,
@@ -28,7 +28,7 @@ return [
 
     'backend_forum_category_menu' => [
         [
-            'route' => ['backend.forum.category.update', ['forum_category_id' => 'segment:4']],
+            'route' => ['admin.forum.category.update', ['forum_category_id' => 'segment:4']],
             'text' => 'Basic Info',
             'icon' => 'fa-file-text-o',
             'order' => 1,

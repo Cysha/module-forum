@@ -15,7 +15,7 @@ class PermissionController extends BaseController
     public function getForm(CategoryRepo $category, RoleRepo $role)
     {
         $this->theme->setTitle('Category Permission Manager');
-        $this->theme->breadcrumb()->add('Category Permission Manager', route('backend.forum.permissions.manager'));
+        $this->theme->breadcrumb()->add('Category Permission Manager', route('admin.forum.permissions.manager'));
 
         $permissions = Permission::groupBy('action', 'resource_type', 'resource_id')
                         ->orderBy('resource_type', 'asc')

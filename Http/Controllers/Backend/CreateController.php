@@ -11,7 +11,7 @@ class CreateController extends BaseController
     public function getForm()
     {
         $this->theme->setTitle('Create Category');
-        $this->theme->breadcrumb()->add('Create Category', route('backend.forum.category.create'));
+        $this->theme->breadcrumb()->add('Create Category', route('admin.forum.category.create'));
         $this->formAssets();
 
         return $this->setView('backend.category.basic', [
@@ -31,7 +31,7 @@ class CreateController extends BaseController
         }
 
         return redirect()
-            ->route('backend.forum.category.update', $category->id)
+            ->route('admin.forum.category.update', $category->id)
             ->withInfo('Category Created!');
     }
 }

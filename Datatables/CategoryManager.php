@@ -19,7 +19,7 @@ class CategoryManager
                 'header' => [
                     [
                         'btn-text' => 'Create Category',
-                        'btn-route' => 'backend.forum.category.create',
+                        'btn-route' => 'admin.forum.category.create',
                         'btn-class' => 'btn btn-info btn-labeled',
                         'btn-icon' => 'fa fa-plus',
                     ],
@@ -35,7 +35,7 @@ class CategoryManager
                 'ordering' => false,
                 'sort_column' => 'order',
                 'sort_order' => 'desc',
-                'source' => 'backend.forum.category.manager',
+                'source' => 'admin.forum.category.manager',
                 'collection' => function () {
                     $model = 'Cms\Modules\Forum\Models\Category';
 
@@ -88,7 +88,7 @@ class CategoryManager
                         $return = [
                             [
                                 'btn-title' => 'Edit Category',
-                                'btn-link' => route('backend.forum.category.update', $model->id),
+                                'btn-link' => route('admin.forum.category.update', $model->id),
                                 'btn-class' => 'btn btn-warning btn-xs btn-labeled',
                                 'btn-icon' => 'fa fa-pencil',
                                 'hasPermission' => 'update@forum_backend',
@@ -98,7 +98,7 @@ class CategoryManager
                         if ($model->order > 1) {
                             $return[] = [
                                 'btn-title' => 'Move Up',
-                                'btn-link' => route('backend.forum.category.move-up', $model->id),
+                                'btn-link' => route('admin.forum.category.move-up', $model->id),
                                 'btn-class' => 'btn btn-default btn-xs btn-labeled',
                                 'btn-icon' => 'fa fa-arrow-up',
                                 'btn-method' => 'post',
@@ -109,7 +109,7 @@ class CategoryManager
 
                         $return[] = [
                             'btn-title' => 'Move Down',
-                            'btn-link' => route('backend.forum.category.move-down', $model->id),
+                            'btn-link' => route('admin.forum.category.move-down', $model->id),
                             'btn-class' => 'btn btn-default btn-xs btn-labeled',
                             'btn-icon' => 'fa fa-arrow-down',
                             'btn-method' => 'post',
