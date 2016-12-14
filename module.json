@@ -14,7 +14,8 @@
     "providers": [
         "Cms\\Modules\\Forum\\Providers\\ForumModuleServiceProvider",
         "Cms\\Modules\\Forum\\Providers\\ForumEventsProvider",
-        "Cms\\Modules\\Forum\\Providers\\ForumRoutingProvider"
+        "Cms\\Modules\\Forum\\Providers\\ForumRoutingProvider",
+        "Cms\\Modules\\Forum\\Providers\\ForumModelsProvider"
     ],
     "aliases": {
     },
