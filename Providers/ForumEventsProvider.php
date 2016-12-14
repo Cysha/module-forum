@@ -2,7 +2,6 @@
 
 namespace Cms\Modules\Forum\Providers;
 
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Cms\Modules\Core\Providers\BaseEventsProvider;
 
 class ForumEventsProvider extends BaseEventsProvider
@@ -27,11 +26,9 @@ class ForumEventsProvider extends BaseEventsProvider
 
     /**
      * Register any other events for your application.
-     *
-     * @param \Illuminate\Contracts\Events\Dispatcher $events
      */
-    public function boot(DispatcherContract $events)
+    public function boot()
     {
-        parent::boot($events);
+        parent::boot();
     }
 }

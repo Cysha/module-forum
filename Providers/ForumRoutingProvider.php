@@ -2,8 +2,8 @@
 
 namespace Cms\Modules\Forum\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Cms\Modules\Core\Providers\CmsRoutingProvider;
-use Illuminate\Routing\Router;
 
 class ForumRoutingProvider extends CmsRoutingProvider
 {
@@ -33,21 +33,21 @@ class ForumRoutingProvider extends CmsRoutingProvider
         return __DIR__.'/../Http/routes-api.php';
     }
 
-    public function boot(Router $router)
+    public function boot()
     {
-        parent::boot($router);
+        parent::boot();
 
-        $router->bind('forum_category_id', function ($id) {
+        Route::bind('forum_category_id', function ($id) {
             return with(new \Cms\Modules\Forum\Models\Category())
                 ->findOrFail($id);
         });
 
-        //$router->bind('forum_thread_id', function ($id) {
+        //Route::bind('forum_thread_id', function ($id) {
         //    return with(new \Cms\Modules\Forum\Models\Thread)
         //        ->findOrFail($id);
         //});
 
-        $router->bind('forum_post_id', function ($id) {
+        Route::bind('forum_post_id', function ($id) {
            return with(new \Cms\Modules\Forum\Models\Post())
                 ->with('thread')
                 ->findOrFail($id);

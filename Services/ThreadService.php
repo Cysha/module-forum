@@ -32,7 +32,7 @@ class ThreadService
         });
 
         // turn them into an array of ids
-        $ids = $categories->lists('id')->toArray();
+        $ids = $categories->pluck('id')->toArray();
 
         // then get the threads for these ids
         $pagination = $this->thread->getByCategories($ids, 10);
