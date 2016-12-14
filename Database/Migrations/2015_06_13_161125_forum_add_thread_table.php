@@ -16,7 +16,7 @@ class ForumAddThreadTable extends Migration
     public function up()
     {
         $prefix = $this->prefix;
-        $authModel = config('auth.model');
+        $authModel = config('cms.auth.config.user_model');
 
         Schema::create($prefix.'threads', function ($table) use ($prefix, $authModel) {
             $table->increments('id')->unsigned();

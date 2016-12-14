@@ -16,7 +16,7 @@ class ForumAddCategoryTable extends Migration
     public function up()
     {
         $prefix = $this->prefix;
-        $authModel = config('auth.model');
+        $authModel = config('cms.auth.config.user_model');
 
         Schema::create($prefix.'categories', function ($table) {
             $table->increments('id')->unsigned();
