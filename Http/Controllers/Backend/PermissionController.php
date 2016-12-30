@@ -79,7 +79,7 @@ class PermissionController extends BaseController
                         if ($perm !== null) {
                             DB::table('auth_permission_role')
                                 ->whereRoleId($role->id)
-                                ->whereIn('permission_id', $perm->lists('id')->toArray())
+                                ->whereIn('permission_id', $perm->pluck('id')->toArray())
                                 ->delete();
                         }
                     break;
